@@ -2,11 +2,11 @@ require("dotenv").config();
 const mysql = require("mysql");
 
 //??
-/* const fs = require("fs"); */
+const fs = require("fs"); 
 //??
 /* import { dirname } from 'path';
-const __dirname = dirname(__filename);
- */
+const __dirname = dirname(__filename); */
+
 
 const DB_HOST = process.env.DB_HOST;
 const DB_USER = process.env.DB_USER;
@@ -25,10 +25,10 @@ con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
 
-  let sql = fs.readFileSync(_dirname + "init.sql").toString(); 
+  let sql = fs.readFileSync(__dirname + "/init_db.sql").toString(); 
   con.query(sql, function(err, result) { 
     if (err) throw err;
-    console.log("Table creation 'items' was successful!"); 
+    console.log("Table creation 'products' was successful!"); 
 
   /* let sql =
     "DROP TABLE if exists items; CREATE TABLE items(id INT NOT NULL AUTO_INCREMENT, text VARCHAR(40) not null, complete BOOLEAN, PRIMARY KEY (id));"; */
