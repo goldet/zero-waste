@@ -5,10 +5,13 @@ import { producttype } from "./ProductType";
 
 const FormTemplate = () => {
   const [product, setProduct] = useState({
+    firstname:"",
     name: "",
     type: "",
-    amount: 0,
-    phonenumber: ""
+    description:"",
+    amount: Number,
+    phone_number: "",
+    zip_code:""
   });
   const [checkedState, setCheckedState] = useState(
     new Array(producttype.length).fill(false)
@@ -70,13 +73,24 @@ const FormTemplate = () => {
   return (
     <>
       <form className="grid" onSubmit={e => handleSubmit(e)}> {/* action="/send-data-here" method="post" */}
+      
+      <label>
+          Your name:
+          <input
+          type="text" 
+          name="firstname"
+          value={product.firstname}
+          onChange={e => handleChange(e)}
+          ></input>
+        </label>
+
         <label>
           Product:
           <input
           type="text" 
           name="name"
           value={product.name}
-          onChange={e => handleOnChange(e)}
+          onChange={e => handleChange(e)}
           ></input>
         </label>
 
@@ -85,7 +99,7 @@ const FormTemplate = () => {
           <ul className="productType">
             {producttype.map(({ type }, index) => {
               return (
-                <li key={index}>
+                <li className="" key={index}>
                   <div className="productsList">
                     <input 
                     type="checkbox"
@@ -104,22 +118,44 @@ const FormTemplate = () => {
         </label>
 
         <label>
-          Amount
+          Description: 
+          <textarea 
+          className="h-24 w-52"
+          type="text"
+          name="description"
+          value={product.description}
+          placeholder="Please provide the condition of food and what days/times you are avilable for pick-up"
+          onChange={e => handleChange(e)}></textarea>
+        </label>
+
+        <label>
+          Amount:
           <input
           type="number"
           name="amount"
           value={product.amount}
-          onChange={e => handleOnChange(e)}></input>
+          onChange={e => handleChange(e)}></input>
         </label>
 
         <label>
-          Phone number
+          Phone number:
           <input
           type="text"
-          name="phonenumber"
-          value={product.phonenumber}
-          onChange={e => handleOnChange(e)}></input>
+          name="phone_number"
+          value={product.phone_number}
+          onChange={e => handleChange(e)}></input>
         </label>
+
+
+        <label>
+          Zip Code:
+          <input
+          type="text"
+          name="zip_code"
+          value={product.zip_code}
+          onChange={e => handleChange(e)}></input>
+        </label>
+
 
         <button>Submit</button>
       </form>
