@@ -10,6 +10,7 @@ CREATE TABLE products (
     amount FLOAT(3, 0) NOT NULL, 
     phone_number VARCHAR(10) NOT NULL,
     zip_code VARCHAR(10) NOT NULL
+    needed TINYINT NOT NULL
 );
 
 INSERT INTO products (firstname, name, type, description, amount, phone_number)
