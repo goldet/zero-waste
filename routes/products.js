@@ -47,12 +47,12 @@ router.post("/", async (req, res) => {
   const description = req.body.description;
   const amount = req.body.amount;
   const phone_number = req.body.phone_number;
- /*  const zipCode = req.body.zip_code; */
-  /* const needed = req.body.needed; */
+  const zip_code = req.body.zip_code;
+  const needed = req.body.needed; 
 
   try {
     await db(
-      `INSERT INTO products (firstname, name, type, description, amount, phone_number) values ('${firstname}', '${name}', '${type}', '${description}', ${amount}, '${phone_number}')`
+      `INSERT INTO products (firstname, name, type, description, amount, phone_number, zip_code, needed) values ('${firstname}', '${name}', '${type}', '${description}', ${amount}, '${phone_number}', '${zip_code}', ${needed})`
     );
 
     //const results = await db("SELECT * FROM items ORDER BY id ASC;")
@@ -86,17 +86,17 @@ router.delete("/:id", async (req, res) => {
 });
 
 
-//put request 
-router.put("/:id", async (req, res) => {
+//patch request 
+router.patch("/:id", async (req, res) => {
   const id = Number(req.params.id);
   const firstname = req.body.firstname;
   const name = req.body.name;
   const type = req.body.type;
   const description = req.body.description;
   const amount = req.body.amount;
-  const phone_number = req.body.phone_number;
- /*  const zipCode = req.body.zip_code; */
-  /* const needed = req.body.needed; */
+const phone_number = req.body.phone_number;
+ const zip_code = req.body.zip_code;
+  const needed = req.body.needed;
 
   try {
     const response = await db(`SELECT * FROM products WHERE id = ${id}`);
@@ -108,7 +108,9 @@ router.put("/:id", async (req, res) => {
     }
 
     await db(
-      `UPDATE products SET firstname = '${firstname}', name = '${name}', type = '${type}', description = '${description}', amount = ${amount}, phone_number = '${phone_number}' WHERE id = ${id}`
+      `UPDATE products SET firstname = '${firstname}', name = '${name}', type = '${type}', 
+      description = '${description}', amount = ${amount}, phone_number = '${phone_number}',
+       zip_code = '${zip_code}', needed = ${needed} WHERE id = ${id}`  /*    phone_number = '${phone_number}' zip_code = '${zip_code}', needed = ${needed} */
     );
 
     res.send(200);
