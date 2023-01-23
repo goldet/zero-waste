@@ -1,18 +1,18 @@
 export const producttype = [
     {
-      type: "Fruits",
+      type: " Fruits ",
       
     },
     {
-      type: "Vegetables",
+      type: " Vegetables ",
       
     },
     {
-      type: "Meat",
+      type: " Meat ",
      
     },
     {
-      type: "Other",
+      type: " Other ",
       
     }
   ];

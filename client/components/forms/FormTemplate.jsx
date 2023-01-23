@@ -94,9 +94,9 @@ const FormTemplate = () => {
           ></input>
         </label>
 
-        <label>
+        <label className=" ">
           Type: 
-          <ul className="productType">
+          <ul className="productType inline-flex">
             {producttype.map(({ type }, index) => {
               return (
                 <li className="" key={index}>
