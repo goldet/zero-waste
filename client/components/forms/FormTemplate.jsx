@@ -71,12 +71,13 @@ const FormTemplate = () => {
 
 
   return (
-    <>
-      <form className="grid" onSubmit={e => handleSubmit(e)}> {/* action="/send-data-here" method="post" */}
+    <div >
+      <form className="flex flex-col items-start p-10" onSubmit={e => handleSubmit(e)}> {/* action="/send-data-here" method="post" */}
       
       <label>
           Your name:
           <input
+          className="pb-4"
           type="text" 
           name="firstname"
           value={product.firstname}
@@ -87,6 +88,7 @@ const FormTemplate = () => {
         <label>
           Product:
           <input
+          className="pb-4"
           type="text" 
           name="name"
           value={product.name}
@@ -94,12 +96,12 @@ const FormTemplate = () => {
           ></input>
         </label>
 
-        <label className=" ">
+        <label className="pr-3">
           Type: 
-          <ul className="productType inline-flex">
+          <ul className="productType inline-flex pb-4">
             {producttype.map(({ type }, index) => {
               return (
-                <li className="" key={index}>
+                <li className="pr-2" key={index}>
                   <div className="productsList">
                     <input 
                     type="checkbox"
@@ -116,11 +118,12 @@ const FormTemplate = () => {
             })}
           </ul>
         </label>
+         
 
-        <label>
+        <label className="flex flex-col">
           Description: 
           <textarea 
-          className="h-24 w-52"
+          className="h-24 w-80"
           type="text"
           name="description"
           value={product.description}
@@ -131,6 +134,7 @@ const FormTemplate = () => {
         <label>
           Amount:
           <input
+          className="pb-4"
           type="number"
           name="amount"
           value={product.amount}
@@ -140,6 +144,7 @@ const FormTemplate = () => {
         <label>
           Phone number:
           <input
+          className="pb-4"
           type="text"
           name="phone_number"
           value={product.phone_number}
@@ -150,16 +155,18 @@ const FormTemplate = () => {
         <label>
           Zip Code:
           <input
+          className="pb-4"
           type="text"
           name="zip_code"
           value={product.zip_code}
           onChange={e => handleChange(e)}></input>
         </label>
 
-
-        <button>Submit</button>
+      <div className="">
+        <button className="">Submit</button>
+        </div>
       </form>
-    </>
+    </div>
   );
 };
 
