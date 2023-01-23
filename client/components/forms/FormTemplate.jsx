@@ -72,8 +72,8 @@ const FormTemplate = () => {
 
   return (
     <div >
-      <form className="flex flex-col items-start p-10" onSubmit={e => handleSubmit(e)}> {/* action="/send-data-here" method="post" */}
-      
+      <form  onSubmit={e => handleSubmit(e)}> {/* action="/send-data-here" method="post" */}
+      <div className="flex flex-col items-start p-10">
       <label>
           Your name:
           <input
@@ -161,8 +161,8 @@ const FormTemplate = () => {
           value={product.zip_code}
           onChange={e => handleChange(e)}></input>
         </label>
-
-      <div className="">
+        </div>
+      <div className="flex justify-center">
         <button className="btn2 w-20">Submit</button>
         </div>
       </form>
