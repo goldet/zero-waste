@@ -15,12 +15,19 @@ const getProducts = async () => {
 
 router.get("/", async (req, res) => {
   // Send back the full list of items
+  console.log(req.query.needed)
+
+  //check if console.log(req.query.needed) is undefined, you need to get all products
+  //if it is true you only get needed
+  //if its false you get the giving away ones 
+  //fetch request in front end to reflect true or false 
   try {
     const products = await getProducts();
     res.status(200).send({ products });
   } catch (error) {
     res.status(500).send(error);
   }
+  
 });
 
 router.get("/:id", async (req, res) => {
@@ -94,23 +101,25 @@ router.patch("/:id", async (req, res) => {
   const type = req.body.type;
   const description = req.body.description;
   const amount = req.body.amount;
-const phone_number = req.body.phone_number;
- const zip_code = req.body.zip_code;
+  const phone_number = req.body.phone_number;
+  const zip_code = req.body.zip_code;
   const needed = req.body.needed;
 
   try {
     const response = await db(`SELECT * FROM products WHERE id = ${id}`);
     const product = response.data[0];
 
+
     if (!product) {
       res.status(404).send();
       return;
     }
+    const newProduct = {...product,...req.body}
 
     await db(
-      `UPDATE products SET firstname = '${firstname}', name = '${name}', type = '${type}', 
-      description = '${description}', amount = ${amount}, phone_number = '${phone_number}',
-       zip_code = '${zip_code}', needed = ${needed} WHERE id = ${id}`  /*    phone_number = '${phone_number}' zip_code = '${zip_code}', needed = ${needed} */
+      `UPDATE products SET firstname = '${newProduct.firstname}', name = '${newProduct.name}', type = '${newProduct.type}', 
+      description = '${newProduct.description}', amount = ${newProduct.amount}, phone_number = '${newProduct.phone_number}',
+       zip_code = '${newProduct.zip_code}', needed = ${newProduct.needed} WHERE id = ${newProduct.id}`  /*    phone_number = '${phone_number}' zip_code = '${zip_code}', needed = ${needed} */
     );
 
     res.send(200);
