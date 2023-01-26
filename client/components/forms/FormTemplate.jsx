@@ -14,22 +14,22 @@ const FormTemplate = () => {
     zip_code:"",
     needed:Boolean
   });
-  /* const [checkedState, setCheckedState] = useState(
+  const [checkedState, setCheckedState] = useState(
     new Array(producttype.length).fill(false)
-  ); */
+  );
 
   const [checked, setChecked] = useState("")
   const [error, setError] = useState("");
  
 //for old checkboxes 
- /*  const handleOnChange = (position) => {
+  const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
     );
 
     setCheckedState(updatedCheckedState);
 
-  }; */
+  };
  
 
   const handleChange = event => {
@@ -96,7 +96,7 @@ const FormTemplate = () => {
         </label>
 
     {/* FIX ISSUE CONNECT ON CHANGE WITH THE REST?? NOT COMING  */}
-       {/*  <label className="pr-3">
+        <label className="pr-3">
           Type: 
           <ul className="productType inline-flex pb-4">
             {producttype.map(({ type }, index) => {
@@ -117,9 +117,9 @@ const FormTemplate = () => {
               );
             })}
           </ul>
-        </label> */}
+        </label>
 
-<div className="radio">
+{/* <div className="radio">
           <label>
             <input type="radio" value={product.type} checked={true} onChange={e => handleChange(e)}/>
             Fruits
@@ -142,7 +142,7 @@ const FormTemplate = () => {
             <input type="radio" value={product.type} onChange={e => handleChange(e)} />
           other
           </label>
-        </div>
+        </div> */}
          
 
         <label className="flex flex-col">
