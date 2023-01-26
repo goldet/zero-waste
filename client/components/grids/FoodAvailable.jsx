@@ -14,12 +14,14 @@ const [error, setError] = useState(null);
 
 useEffect(() => {
   const getProducts = async () => {
+
    /*  setIsLoading(true) */
-    const response = await fetch(`${BASE_URL}/products`,); //?needed=false
+    const response = await fetch(`${BASE_URL}/products?needed=false`);  //?needed=false
     console.log(response);
     const data = await response.json();
+    console.log(data)
 
-    const products = data.products;
+    const products = data.products.data;
     setProducts(products)
    /*  setIsLoading(false) */
   

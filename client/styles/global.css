@@ -5,15 +5,18 @@
 
 * {
     font-family: 'Questrial', sans-serif;
+   
      
 }
     
 
   body {
-    width: 100vw;
+   /*  width: 100vw; */
     padding: 0;
-    position: fixed;
+   /*  position: fixed; */
     margin: 0;
+    /* overflow: visible; */
+    
     /* margin: 1%; */
     
 }

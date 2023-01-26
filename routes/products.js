@@ -18,22 +18,22 @@ router.get("/", async (req, res) => {
   //console.log(req.query.needed)
 
   //return needed === true 
-  if (req.query.needed === true) {
+  if (req.query.needed === 'true') {
     try {
-      const products = await db(`SELECT * FROM products WHERE needed = true`);
+      const products = await db(`SELECT * FROM products WHERE needed = true;`);
       res.status(200).send({ products });
     } catch (error) {
       res.status(500).send(error);
     }
     //return needed === false return gving away items
-  } else if (req.query.needed === false) {
+  } else if (req.query.needed === 'false') {
     try {
-      const products = await db("SELECT * FROM products WHERE needed = false");
+      const products = await db("SELECT * FROM products WHERE needed = false;");
       res.status(200).send({ products });
     } catch (error) {
       res.status(500).send(error);
     }
-  } else if (req.query.needed === undefined) {
+  } else {
 
   //check if console.log(req.query.needed) is undefined, you need to get all products
  try {

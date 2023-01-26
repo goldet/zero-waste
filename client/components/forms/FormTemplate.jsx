@@ -14,22 +14,23 @@ const FormTemplate = () => {
     zip_code:"",
     needed:Boolean
   });
-  const [checkedState, setCheckedState] = useState(
+  /* const [checkedState, setCheckedState] = useState(
     new Array(producttype.length).fill(false)
-  );
+  ); */
+
+  const [checked, setChecked] = useState("")
   const [error, setError] = useState("");
  
-
-  const handleOnChange = (position) => {
+//for old checkboxes 
+ /*  const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
     );
 
     setCheckedState(updatedCheckedState);
 
-  };
-
-
+  }; */
+ 
 
   const handleChange = event => {
     const inputEl = event.target;
@@ -39,15 +40,6 @@ const FormTemplate = () => {
     setProduct(product => ({ ...product, [name]: value }));
   };
 
-  //how can i make the type work
- /*  const handleOnChange = (position) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    );
-
-    setCheckedState(updatedCheckedState);
-
-  }; */
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -104,7 +96,7 @@ const FormTemplate = () => {
         </label>
 
     {/* FIX ISSUE CONNECT ON CHANGE WITH THE REST?? NOT COMING  */}
-        <label className="pr-3">
+       {/*  <label className="pr-3">
           Type: 
           <ul className="productType inline-flex pb-4">
             {producttype.map(({ type }, index) => {
@@ -112,7 +104,7 @@ const FormTemplate = () => {
                 <li className="pr-2" key={index}>
                   <div className="productsList">
                     <input 
-                    type="checkbox"
+                    type="radio"
                     id={`custom-checkbox-${index}`}
                     name={type}
                     value={product.type}
@@ -125,7 +117,32 @@ const FormTemplate = () => {
               );
             })}
           </ul>
-        </label>
+        </label> */}
+
+<div className="radio">
+          <label>
+            <input type="radio" value={product.type} checked={true} onChange={e => handleChange(e)}/>
+            Fruits
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input type="radio" value={product.type} onChange={e => handleChange(e)} />
+            Vegetable
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input type="radio" value={product.type} onChange={e => handleChange(e)}/>
+           Meat
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input type="radio" value={product.type} onChange={e => handleChange(e)} />
+          other
+          </label>
+        </div>
          
 
         <label className="flex flex-col">
