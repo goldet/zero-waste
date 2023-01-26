@@ -15,20 +15,35 @@ const getProducts = async () => {
 
 router.get("/", async (req, res) => {
   // Send back the full list of items
-  console.log(req.query.needed)
+  //console.log(req.query.needed)
+
+  //return needed === true 
+  if (req.query.needed === true) {
+    try {
+      const products = await db(`SELECT * FROM products WHERE needed = true`);
+      res.status(200).send({ products });
+    } catch (error) {
+      res.status(500).send(error);
+    }
+    //return needed === false return gving away items
+  } else if (req.query.needed === false) {
+    try {
+      const products = await db("SELECT * FROM products WHERE needed = false");
+      res.status(200).send({ products });
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  } else if (req.query.needed === undefined) {
 
   //check if console.log(req.query.needed) is undefined, you need to get all products
-  //if it is true you only get needed
-  //if its false you get the giving away ones 
-  //fetch request in front end to reflect true or false 
-  try {
+ try {
     const products = await getProducts();
     res.status(200).send({ products });
   } catch (error) {
     res.status(500).send(error);
   }
   
-});
+}});
 
 router.get("/:id", async (req, res) => {
   const id = Number(req.params.id);

@@ -1,22 +1,24 @@
 import { useState } from "react";
 import { producttype } from "./ProductType";
 
-/* const BASE_URL = "http://localhost:5000"; */
 
+const BASE_URL = "http://localhost:5000"
 const FormTemplate = () => {
   const [product, setProduct] = useState({
     firstname:"",
     name: "",
     type: "",
     description:"",
-    amount: Number,
+    amount: 0,
     phone_number: "",
-    zip_code:""
+    zip_code:"",
+    needed:Boolean
   });
   const [checkedState, setCheckedState] = useState(
     new Array(producttype.length).fill(false)
   );
   const [error, setError] = useState("");
+ 
 
   const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
@@ -29,13 +31,6 @@ const FormTemplate = () => {
 
 
 
- /* 
-     const addProduct = ((product) => {
-    setProducts((state) => {
-     return [...state, product]
-    })
- }) */
-
   const handleChange = event => {
     const inputEl = event.target;
     const name = inputEl.name;
@@ -44,17 +39,29 @@ const FormTemplate = () => {
     setProduct(product => ({ ...product, [name]: value }));
   };
 
+  //how can i make the type work
+ /*  const handleOnChange = (position) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === position ? !item : item
+    );
+
+    setCheckedState(updatedCheckedState);
+
+  }; */
+
   const handleSubmit = event => {
     event.preventDefault();
 
     createProduct(product);
 
-   /*  addProduct(product) */
+   
   };
+  console.log("1")
 
   const createProduct = async product => {
+    console.log("hi")
     try {
-      await fetch(`${BASE_URL}/products/`, {
+      await fetch(`${BASE_URL}/products`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -72,7 +79,7 @@ const FormTemplate = () => {
 
   return (
     <div >
-      <form  onSubmit={e => handleSubmit(e)}> {/* action="/send-data-here" method="post" */}
+      <form  onSubmit={e => handleSubmit(e)}> 
       <div className="flex flex-col items-start p-10">
       <label>
           Your name:
@@ -96,6 +103,7 @@ const FormTemplate = () => {
           ></input>
         </label>
 
+    {/* FIX ISSUE CONNECT ON CHANGE WITH THE REST?? NOT COMING  */}
         <label className="pr-3">
           Type: 
           <ul className="productType inline-flex pb-4">
@@ -107,7 +115,7 @@ const FormTemplate = () => {
                     type="checkbox"
                     id={`custom-checkbox-${index}`}
                     name={type}
-                    value={type}
+                    value={product.type}
                     checked={checkedState[index]}
                     onChange={() => handleOnChange(index)}
                     />
@@ -127,12 +135,12 @@ const FormTemplate = () => {
           type="text"
           name="description"
           value={product.description}
-          placeholder="Please provide the condition of food and what days/times you are avilable for pick-up"
+          placeholder="Provide the condition of food you have if sharing and what days/times you are avilable for pick-up/drop-off"
           onChange={e => handleChange(e)}></textarea>
         </label>
 
         <label>
-          Amount:
+         Amount:
           <input
           className="pb-4"
           type="number"
@@ -161,9 +169,21 @@ const FormTemplate = () => {
           value={product.zip_code}
           onChange={e => handleChange(e)}></input>
         </label>
+
+        <label>
+          Is this something you need? 
+          <input
+          className="pb-4"
+          type="boolean"
+          name="needed"
+          placeholder="true or false"
+          value={product.needed}
+          onChange={e => handleChange(e)}></input>
+        </label>
+
         </div>
       <div className="flex justify-center">
-        <button className="btn2 w-20">Submit</button>
+        <button type="submit" className="btn2 w-20">Submit</button>
         </div>
       </form>
     </div>
