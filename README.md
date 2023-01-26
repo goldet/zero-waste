@@ -28,11 +28,15 @@ The webflow includes the different sections of the webpage and how they will con
 Node.js 14.6.0 or newer
 MacOS, Windows (including WSL), and Linux are supported
 
-###### Intall and Start
+###### Intall and Start Front End
 
-Run npm run dev or yarn dev or pnpm dev to start the development server on http://localhost:3000
+Run npm install then Run npm run dev or yarn dev or pnpm dev to start the development server on http://localhost:3000
 
 Visit http://localhost:3000 to view your application
+
+###### Install and Start Backend
+
+run npm install then run npm run start
 
 ###### Install Tailwind with next.js
 
