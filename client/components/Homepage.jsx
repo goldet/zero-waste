@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Homepage() {
   return (
     <>
@@ -11,6 +13,10 @@ export default function Homepage() {
         something you need, ask for it and it will be shared to the food needs
         page.
       </p>
+
+      <div className="btn2 w-36 tracking-wide text-lg m-auto flex justify-center text-center"> 
+      <Link className="flex justify-center" href="/forms/share">Start Sharing!</Link>
+</div>
     </>
   );
 }

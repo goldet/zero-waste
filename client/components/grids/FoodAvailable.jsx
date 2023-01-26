@@ -31,12 +31,12 @@ useEffect(() => {
 
   return (<>
   
-  <h1 className="text-2xl text-center pt-5">Food to share!</h1>
+  <h1 className="text-4xl text-center pt-5 pb-10">Food to share!</h1>
 
-  <ul className="list">
+  {/* <div  className="list "> */}
           {products &&
             products.map(product => (
-              <li className="line" key={product.id}>
+              <div key={product.id}>
                 {/* <button
                   className="deleteBtn"
                   onClick={() => deleteProduct(product.id)}
@@ -47,12 +47,13 @@ useEffect(() => {
                   </span>
                 </button> */}
                 <span>
-                  {product.firstname} {product.name} {product.type} {product.description} {product.amount} {product.phone_number} {product.zip_code} {product.needed}
+                 <div className="container"> {product.name} <br/> {product.description} <br/> Amount: {product.amount} <br/> {product.firstname}'s number: {product.phone_number} <br/> {product.zip_code}   {/* m-0 border-solid  text-center pt-6 */}
+                 </div> 
                 </span>
                
-              </li>
+              </div>
             ))}
-        </ul>
+       {/*  </div> */}
     
 
   </>

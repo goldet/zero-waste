@@ -131,7 +131,7 @@ const FormTemplate = () => {
         <label className="flex flex-col">
           Description: 
           <textarea 
-          className=" h-16 w-80"
+          className=" h-20 w-80"
           type="text"
           name="description"
           value={product.description}

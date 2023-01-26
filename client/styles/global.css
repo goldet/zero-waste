@@ -49,3 +49,32 @@ h1 {
     border-radius: 6.5px;
 
 }
+
+.container {
+    
+        padding: 2rem 4rem;
+        margin:auto;
+        width:80%;
+        margin-bottom: 15px;
+       /*  display: inline-block; */
+        
+        border: 1px solid #333333;
+        /* font-size: 2.5rem; */
+        border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
+        /* text-transform: uppercase; */
+        letter-spacing: 0.3ch;
+        background: #ffffff;
+        position: relative;}
+        
+    .container::before {
+            content: '';
+            border: 1px solid #353535;
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.5deg);
+            border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
+        }
