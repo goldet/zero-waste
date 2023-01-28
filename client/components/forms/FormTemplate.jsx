@@ -1,218 +1,192 @@
 import { useState } from "react";
-import { producttype } from "./ProductType";
 
-
-const BASE_URL = "http://localhost:5000"
+const BASE_URL = "http://localhost:5000";
 const FormTemplate = () => {
-  /* const [type, setType] = useState("") */
   const [product, setProduct] = useState({
-    firstname:"",
+    firstname: "",
     name: "",
     type: "",
-    description:"",
+    description: "",
     amount: 0,
     phone_number: "",
-    zip_code:"",
-    needed:Boolean
+    zip_code: "",
+    needed: Boolean,
   });
 
-  //old checkboxes
- /*  const [checkedState, setCheckedState] = useState(
-    new Array(producttype.length).fill(false)
-  ); */
-
- 
   const [error, setError] = useState("");
- 
-//for old checkboxes 
- /*  const handleOnChange = (position) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    );
 
-    setCheckedState(updatedCheckedState);
+  const handleRadio = (e) => {
+    console.log(e.target.name);
+    const foodType = e.target.value;
+    setProduct((product) => ({ ...product, type: foodType }));
+  };
 
-  }; */
-
-  const handleRadio = e => {
-    console.log(e.target.name)
-    const foodType = e.target.value
-    setProduct(product => ({ ...product, type: foodType }));
-  }
- 
-
-  const handleChange = event => {
-   
+  const handleChange = (event) => {
     const inputEl = event.target;
     const name = inputEl.name;
     const value = inputEl.value;
-   /*  setType((type) => event.target.value); */
-    setProduct(product => ({ ...product, [name]: value }));
-
+    setProduct((product) => ({ ...product, [name]: value }));
   };
 
-
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    
 
     createProduct(product);
-
-   
   };
 
-
-  const createProduct = async product => {
-  
+  const createProduct = async (product) => {
     try {
       await fetch(`${BASE_URL}/products`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(product)
+        body: JSON.stringify(product),
       });
-      /* window.location.reload(); */
+      window.location.reload();
     } catch (error) {
       setError("Something went wrong! Please try again later.");
     } finally {
-    }  console.log(product)
+    }
+    console.log(product);
   };
 
-
-
   return (
-    <div >
-      <form  onSubmit={e => handleSubmit(e)}> 
-      <div className="flex flex-col items-start p-10">
-      <label>
-          Your name:
-          <input
-          className="pb-4"
-          type="text" 
-          name="firstname"
-          value={product.firstname}
-          onChange={e => handleChange(e)}
-          ></input>
-        </label>
-
-        <label>
-          Product:
-          <input
-          className="pb-4"
-          type="text" 
-          name="name"
-          value={product.name}
-          onChange={e => handleChange(e)}
-          ></input>
-        </label>
-
-    {/* FIX ISSUE CONNECT ON CHANGE WITH THE REST?? NOT COMING  */}
-       {/*  <label className="pr-3">
-          Type: 
-          <ul className="productType inline-flex pb-4">
-            {producttype.map(({ type }, index) => {
-              return (
-                <li className="pr-2" key={index}>
-                  <div className="productsList">
-                    <input 
-                    type="radio"
-                    id={`custom-checkbox-${index}`}
-                    name={type}
-                    value={product.type}
-                    checked={checkedState[index]}
-                    onChange={() => handleOnChange(index)}
-                    />
-                    <label htmlFor={`custom-checkbox-${index}`}>{type}</label>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </label> */}
-
-<div className="radio">
+    <div>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <div className="flex flex-col items-start p-10">
           <label>
-            <input type="radio" name="type" value={"fruits"} checked={product.type === "fruits"} onChange={e => handleRadio(e)}/>
-            Fruits
+            Your name:
+            <input
+              className="pb-4"
+              type="text"
+              name="firstname"
+              value={product.firstname}
+              onChange={(e) => handleChange(e)}
+            ></input>
+          </label>
+
+          <label>
+            Product:
+            <input
+              className="pb-4"
+              type="text"
+              name="name"
+              value={product.name}
+              onChange={(e) => handleChange(e)}
+            ></input>
+          </label>
+
+          <div className="radio">
+            <label>
+              <input
+                type="radio"
+                name="type"
+                value={"fruits"}
+                checked={product.type === "fruits"}
+                onChange={(e) => handleRadio(e)}
+              />
+              Fruits
+            </label>
+          </div>
+          <div className="radio">
+            <label>
+              <input
+                type="radio"
+                name="type"
+                value={"vegetables"}
+                checked={product.type === "vegetables"}
+                onChange={(e) => handleRadio(e)}
+              />
+              Vegetable
+            </label>
+          </div>
+          <div className="radio">
+            <label>
+              <input
+                type="radio"
+                name="type"
+                value={"meat"}
+                checked={product.type === "meat"}
+                onChange={(e) => handleRadio(e)}
+              />
+              Meat
+            </label>
+          </div>
+          <div className="radio">
+            <label>
+              <input
+                type="radio"
+                name="type"
+                value={"other"}
+                checked={product.type === "other"}
+                onChange={(e) => handleRadio(e)}
+              />
+              Other
+            </label>
+          </div>
+
+          <label className="flex flex-col">
+            Description:
+            <textarea
+              className=" h-20 w-80"
+              type="text"
+              name="description"
+              value={product.description}
+              placeholder="Provide the condition of food you have if sharing and what days/times you are avilable for pick-up/drop-off"
+              onChange={(e) => handleChange(e)}
+            ></textarea>
+          </label>
+
+          <label>
+            Amount:
+            <input
+              className="pb-4"
+              type="number"
+              name="amount"
+              value={product.amount}
+              onChange={(e) => handleChange(e)}
+            ></input>
+          </label>
+
+          <label>
+            Phone number:
+            <input
+              className="pb-4"
+              type="text"
+              name="phone_number"
+              value={product.phone_number}
+              onChange={(e) => handleChange(e)}
+            ></input>
+          </label>
+
+          <label>
+            Zip Code:
+            <input
+              className="pb-4"
+              type="text"
+              name="zip_code"
+              value={product.zip_code}
+              onChange={(e) => handleChange(e)}
+            ></input>
+          </label>
+
+          <label>
+            Is this something you need?
+            <input
+              className="pb-4"
+              type="boolean"
+              name="needed"
+              placeholder="true or false"
+              value={product.needed}
+              onChange={(e) => handleChange(e)}
+            ></input>
           </label>
         </div>
-        <div className="radio">
-          <label>
-            <input type="radio" name="type" value={"vegetables"}  checked={product.type === "vegetables"} onChange={e => handleRadio(e)} />
-            Vegetable
-          </label>
-        </div>
-        <div className="radio">
-          <label>
-            <input type="radio" name="type" value={"meat"} checked={product.type=== "meat"} onChange={e => handleRadio(e)}/>
-           Meat
-          </label>
-        </div>
-        <div className="radio">
-          <label>
-            <input type="radio" name="type" value={"other"} checked={product.type === "other"} onChange={e => handleRadio(e)} />
-          other
-          </label>
-        </div> 
-         
-
-        <label className="flex flex-col">
-          Description: 
-          <textarea 
-          className=" h-20 w-80"
-          type="text"
-          name="description"
-          value={product.description}
-          placeholder="Provide the condition of food you have if sharing and what days/times you are avilable for pick-up/drop-off"
-          onChange={e => handleChange(e)}></textarea>
-        </label>
-
-        <label>
-         Amount:
-          <input
-          className="pb-4"
-          type="number"
-          name="amount"
-          value={product.amount}
-          onChange={e => handleChange(e)}></input>
-        </label>
-
-        <label>
-          Phone number:
-          <input
-          className="pb-4"
-          type="text"
-          name="phone_number"
-          value={product.phone_number}
-          onChange={e => handleChange(e)}></input>
-        </label>
-
-
-        <label>
-          Zip Code:
-          <input
-          className="pb-4"
-          type="text"
-          name="zip_code"
-          value={product.zip_code}
-          onChange={e => handleChange(e)}></input>
-        </label>
-
-        <label>
-          Is this something you need? 
-          <input
-          className="pb-4"
-          type="boolean"
-          name="needed"
-          placeholder="true or false"
-          value={product.needed}
-          onChange={e => handleChange(e)}></input>
-        </label>
-
-        </div>
-      <div className="flex justify-center">
-        <button type="submit" className="btn2 w-20">Submit</button>
+        <div className="flex justify-center">
+          <button type="submit" className="btn2 w-20">
+            Submit
+          </button>
         </div>
       </form>
     </div>
