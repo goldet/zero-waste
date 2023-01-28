@@ -4,11 +4,11 @@ import { producttype } from "./ProductType";
 
 const BASE_URL = "http://localhost:5000"
 const FormTemplate = () => {
-  const [type, setType] = useState("fruits")
+  /* const [type, setType] = useState("") */
   const [product, setProduct] = useState({
     firstname:"",
     name: "",
-    type: 'other',
+    type: "",
     description:"",
     amount: 0,
     phone_number: "",
@@ -33,6 +33,12 @@ const FormTemplate = () => {
     setCheckedState(updatedCheckedState);
 
   }; */
+
+  const handleRadio = e => {
+    console.log(e.target.name)
+    const foodType = e.target.value
+    setProduct(product => ({ ...product, type: foodType }));
+  }
  
 
   const handleChange = event => {
@@ -40,8 +46,9 @@ const FormTemplate = () => {
     const inputEl = event.target;
     const name = inputEl.name;
     const value = inputEl.value;
-    setType(event.target.value);
+   /*  setType((type) => event.target.value); */
     setProduct(product => ({ ...product, [name]: value }));
+
   };
 
 
@@ -53,10 +60,10 @@ const FormTemplate = () => {
 
    
   };
-  console.log("1")
+
 
   const createProduct = async product => {
-    console.log("hi")
+  
     try {
       await fetch(`${BASE_URL}/products`, {
         method: "POST",
@@ -69,7 +76,7 @@ const FormTemplate = () => {
     } catch (error) {
       setError("Something went wrong! Please try again later.");
     } finally {
-    }
+    }  console.log(product)
   };
 
 
@@ -126,25 +133,25 @@ const FormTemplate = () => {
 
 <div className="radio">
           <label>
-            <input type="radio" value={'fruits'} checked={type === 'fruits'} onChange={e => handleChange(e)}/>
+            <input type="radio" name="type" value={"fruits"} checked={product.type === "fruits"} onChange={e => handleRadio(e)}/>
             Fruits
           </label>
         </div>
         <div className="radio">
           <label>
-            <input type="radio" value={'vegetable'}  checked={type === 'vegetable'} onChange={e => handleChange(e)} />
+            <input type="radio" name="type" value={"vegetables"}  checked={product.type === "vegetables"} onChange={e => handleRadio(e)} />
             Vegetable
           </label>
         </div>
         <div className="radio">
           <label>
-            <input type="radio" value={'meat'} checked={type === 'meat'} onChange={e => handleChange(e)}/>
+            <input type="radio" name="type" value={"meat"} checked={product.type=== "meat"} onChange={e => handleRadio(e)}/>
            Meat
           </label>
         </div>
         <div className="radio">
           <label>
-            <input type="radio" value={'other'} checked={type === 'other'} onChange={e => handleChange(e)} />
+            <input type="radio" name="type" value={"other"} checked={product.type === "other"} onChange={e => handleRadio(e)} />
           other
           </label>
         </div> 

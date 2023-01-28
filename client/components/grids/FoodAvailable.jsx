@@ -49,7 +49,7 @@ useEffect(() => {
                   </span>
                 </button> */}
                 <span>
-                 <div className="container"> {product.name} <br/> {product.description} <br/> Amount: {product.amount} <br/> {product.firstname}'s number: {product.phone_number} <br/> {product.zip_code}   {/* m-0 border-solid  text-center pt-6 */}
+                 <div className="container"> {product.name} <br/>  {product.type} <br/> {product.description} <br/> Amount: {product.amount} <br/> {product.firstname}'s number: {product.phone_number} <br/> {product.zip_code}   {/* m-0 border-solid  text-center pt-6 */}
                  </div> 
                 </span>
                

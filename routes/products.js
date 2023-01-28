@@ -21,6 +21,7 @@ router.get("/", async (req, res) => {
   if (req.query.needed === 'true') {
     try {
       const products = await db(`SELECT * FROM products WHERE needed = true;`);
+
       res.status(200).send({ products });
     } catch (error) {
       res.status(500).send(error);
@@ -71,6 +72,7 @@ router.post("/", async (req, res) => {
   const phone_number = req.body.phone_number;
   const zip_code = req.body.zip_code;
   const needed = req.body.needed; 
+  console.log(req.body)
 
   try {
     await db(

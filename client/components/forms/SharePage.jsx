@@ -6,7 +6,7 @@ const SharePage= () => {
   return (
     
   <>
-  <h1 className="text-2xl text-center pt-5">What can you share? </h1>
+  <h1 className="text-xl text-center pt-5"> Tell us what you need or what you can share! </h1>
 
   <FormTemplate />
   </>
