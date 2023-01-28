@@ -27,7 +27,7 @@ const FoodNeeds= () => {
   
   return ( 
   <>
-   <h1 className="text-2xl text-center pt-5">Food Needs!</h1>
+   <h1 className="text-4xl text-center pt-5 pb-10">Food Needs!</h1>
    {products &&
             products.map(product => (
               <div key={product.id}>
@@ -41,7 +41,7 @@ const FoodNeeds= () => {
                   </span>
                 </button> */}
                 <span>
-                 <div className="container"> {product.name} <br/> {product.type} <br/> {product.description} <br/> Amount: {product.amount} <br/> {product.firstname}'s number: {product.phone_number} <br/> {product.zip_code}   {/* m-0 border-solid  text-center pt-6 */}
+                <div className="container"> Product: {product.name} <br/>  Type: {product.type} <br/> Description: <br/> {product.description} <br/> Amount: {product.amount} <br/> Contact {product.firstname}: {product.phone_number} <br/> Zip code: {product.zip_code}   
                  </div> 
                 </span>
                

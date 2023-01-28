@@ -2,82 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-
 * {
-    font-family: 'Questrial', sans-serif;
-   
-     
+  font-family: "Questrial", sans-serif;
 }
-    
 
-  body {
-   /*  width: 100vw; */
-    padding: 0;
-   /*  position: fixed; */
-    margin: 0;
-    /* overflow: visible; */
-    
-    /* margin: 1%; */
-    
+body {
+  padding: 0;
+  margin: 0;
 }
 
 .navbarContainer {
-    background-color: rgb(191, 243, 200, .6);
-   
-    
-    
-    padding: 10px;
+  background-color: rgb(191, 243, 200, 0.6);
+
+  padding: 10px;
 }
 
 h1 {
-    color: #015b42;
+  color: #015b42;
 }
 
 .btn {
-    background:#015b42;
-   
-    color: white;
-    
-   
-    border-radius: 6.5px;
+  background: #015b42;
 
+  color: white;
+
+  border-radius: 6.5px;
 }
 
 .btn2 {
-    background: rgb(191, 243, 200, .6);
-   
-    color: #015b42;
-    
-   
-    border-radius: 6.5px;
+  background: rgb(191, 243, 200, 0.6);
 
+  color: #015b42;
+
+  border-radius: 6.5px;
 }
 
 .container {
-    
-        padding: 2rem 4rem;
-        margin:auto;
-        width:80%;
-        margin-bottom: 15px;
-       /*  display: inline-block; */
-        
-        border: 1px solid #333333;
-        /* font-size: 2.5rem; */
-        border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
-        /* text-transform: uppercase; */
-        letter-spacing: 0.3ch;
-        background: #ffffff;
-        position: relative;}
-        
-    .container::before {
-            content: '';
-            border: 1px solid #353535;
-            display: block;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.5deg);
-            border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
-        }
+  padding: 2rem 2rem;
+  margin: auto;
+  width: 80%;
+  margin-bottom: 15px;
+
+  border: 1px solid #333333;
+  border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
+  letter-spacing: 0.3ch;
+  background: #ffffff;
+  position: relative;
+}
+
+.container::before {
+  content: "";
+  border: 1px solid #353535;
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.5deg);
+  border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
+}

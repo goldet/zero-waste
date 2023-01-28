@@ -23,6 +23,7 @@ useEffect(() => {
 const handleMenuClick = () => {
   if (!mainMenu) {
     setMainMenu(true);
+    
   } else if (mainMenu) {
     setMainMenu(false);
 }

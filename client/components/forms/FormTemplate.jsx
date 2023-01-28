@@ -7,13 +7,18 @@ const FormTemplate = () => {
     name: "",
     type: "",
     description: "",
-    amount: 0,
+    amount: Number,
     phone_number: "",
     zip_code: "",
     needed: Boolean,
   });
 
   const [error, setError] = useState("");
+
+  const handleTruefalse = (ev) => {
+    const trueFalse = ev.target.value;
+    setProduct((product) => ({ ...product, needed: trueFalse }));
+  }
 
   const handleRadio = (e) => {
     console.log(e.target.name);
@@ -69,7 +74,7 @@ const FormTemplate = () => {
           <label>
             Product:
             <input
-              className="pb-4"
+              className=""
               type="text"
               name="name"
               value={product.name}
@@ -170,18 +175,34 @@ const FormTemplate = () => {
               onChange={(e) => handleChange(e)}
             ></input>
           </label>
+          
 
-          <label>
-            Is this something you need?
-            <input
-              className="pb-4"
-              type="boolean"
-              name="needed"
-              placeholder="true or false"
-              value={product.needed}
-              onChange={(e) => handleChange(e)}
-            ></input>
-          </label>
+          <p>Is this something you need?</p>
+          <div className="radio">
+            <label>
+              <input
+                type="radio"
+                name="needed"
+                value={"true"}
+                checked={product.needed === "true"}
+                onChange={(e) => handleTruefalse(e)}
+              />
+              yes
+            </label>
+          </div>
+          <div className="radio">
+            <label>
+              <input
+                type="radio"
+                name="needed"
+                value={"false"}
+                checked={product.needed === "false"}
+                onChange={(e) => handleTruefalse(e)}
+              />
+              no
+            </label>
+          </div>
+
         </div>
         <div className="flex justify-center">
           <button type="submit" className="btn2 w-20">
