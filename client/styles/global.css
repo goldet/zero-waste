@@ -62,3 +62,7 @@ h1 {
   transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.5deg);
   border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
 }
+
+input[type="radio"] {
+  margin-right: 10px;
+}

@@ -30,6 +30,22 @@ useEffect(() => {
   getProducts();
 }, []);
 
+const deleteProduct = async id => {
+  try {
+    await fetch(`${BASE_URL}/products/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(products)
+    });
+
+    window.location.reload();
+  } catch (error) {
+    setError("Oops! Something went wrong. Try again later");
+  }
+};
+
 
   return (<>
   
@@ -39,7 +55,7 @@ useEffect(() => {
           {products &&
             products.map(product => (
               <div key={product.id}>
-                {/* <button
+                <button
                   className="deleteBtn"
                   onClick={() => deleteProduct(product.id)}
                 >
@@ -47,7 +63,7 @@ useEffect(() => {
                   <span role="img" aria-label="delete button">
                     ✖️
                   </span>
-                </button> */}
+                </button>
                 <span>
                  <div className="container"> Product: {product.name} <br/>  Type: {product.type} <br/> Description: <br/> {product.description} <br/> Amount: {product.amount} <br/> Contact {product.firstname}: {product.phone_number} <br/> Zip code: {product.zip_code}   
                  </div> 
