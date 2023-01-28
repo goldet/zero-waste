@@ -4,45 +4,50 @@ import { producttype } from "./ProductType";
 
 const BASE_URL = "http://localhost:5000"
 const FormTemplate = () => {
+  const [type, setType] = useState("fruits")
   const [product, setProduct] = useState({
     firstname:"",
     name: "",
-    type: "",
+    type: 'other',
     description:"",
     amount: 0,
     phone_number: "",
     zip_code:"",
     needed:Boolean
   });
-  const [checkedState, setCheckedState] = useState(
-    new Array(producttype.length).fill(false)
-  );
 
-  const [checked, setChecked] = useState("")
+  //old checkboxes
+ /*  const [checkedState, setCheckedState] = useState(
+    new Array(producttype.length).fill(false)
+  ); */
+
+ 
   const [error, setError] = useState("");
  
 //for old checkboxes 
-  const handleOnChange = (position) => {
+ /*  const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
     );
 
     setCheckedState(updatedCheckedState);
 
-  };
+  }; */
  
 
   const handleChange = event => {
+   
     const inputEl = event.target;
     const name = inputEl.name;
     const value = inputEl.value;
-
+    setType(event.target.value);
     setProduct(product => ({ ...product, [name]: value }));
   };
 
 
   const handleSubmit = event => {
     event.preventDefault();
+    
 
     createProduct(product);
 
@@ -60,7 +65,7 @@ const FormTemplate = () => {
         },
         body: JSON.stringify(product)
       });
-      window.location.reload();
+      /* window.location.reload(); */
     } catch (error) {
       setError("Something went wrong! Please try again later.");
     } finally {
@@ -96,7 +101,7 @@ const FormTemplate = () => {
         </label>
 
     {/* FIX ISSUE CONNECT ON CHANGE WITH THE REST?? NOT COMING  */}
-        <label className="pr-3">
+       {/*  <label className="pr-3">
           Type: 
           <ul className="productType inline-flex pb-4">
             {producttype.map(({ type }, index) => {
@@ -117,32 +122,32 @@ const FormTemplate = () => {
               );
             })}
           </ul>
-        </label>
+        </label> */}
 
-{/* <div className="radio">
+<div className="radio">
           <label>
-            <input type="radio" value={product.type} checked={true} onChange={e => handleChange(e)}/>
+            <input type="radio" value={'fruits'} checked={type === 'fruits'} onChange={e => handleChange(e)}/>
             Fruits
           </label>
         </div>
         <div className="radio">
           <label>
-            <input type="radio" value={product.type} onChange={e => handleChange(e)} />
+            <input type="radio" value={'vegetable'}  checked={type === 'vegetable'} onChange={e => handleChange(e)} />
             Vegetable
           </label>
         </div>
         <div className="radio">
           <label>
-            <input type="radio" value={product.type} onChange={e => handleChange(e)}/>
+            <input type="radio" value={'meat'} checked={type === 'meat'} onChange={e => handleChange(e)}/>
            Meat
           </label>
         </div>
         <div className="radio">
           <label>
-            <input type="radio" value={product.type} onChange={e => handleChange(e)} />
+            <input type="radio" value={'other'} checked={type === 'other'} onChange={e => handleChange(e)} />
           other
           </label>
-        </div> */}
+        </div> 
          
 
         <label className="flex flex-col">

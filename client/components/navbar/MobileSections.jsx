@@ -8,12 +8,12 @@ const MobileSections = () => {
 </li>
 
 <li className="list-none"> 
-<Link href="/forms/share">Share Form</Link>
+<Link href="/forms/share">Food Form</Link>
 </li>
 
-<li className="list-none">
+{/* <li className="list-none">
 <Link href="/forms/need">Needs Form</Link>
-</li>
+</li> */}
 
 <li className="list-none">
 <Link href="/grids/foodavailable">Food to share</Link>
