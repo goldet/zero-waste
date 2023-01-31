@@ -13,12 +13,29 @@ const getProducts = async () => {
   res.send('respond with a resource');
 }); */
 
+//send bakc full list of items
 router.get("/", async (req, res) => {
-  // Send back the full list of items
-  //console.log(req.query.needed)
+     
+  //zip code === zip code 
+  const zipCode = req.query.zip_code
+  if (zipCode) {
+   try {
+    const response = await db(`SELECT * FROM products WHERE zip_code = ${zipCode};`);
+    const product = response.data;
+
+    if (!product) {
+      res.status(404).send();
+      return;
+    }
+    res.status(200).send({ product });
+  } catch (error) {
+    res.status(500).send(error);
+  
+  }}
+
 
   //return needed === true 
-  if (req.query.needed === 'true') {
+  else if (req.query.needed === 'true') {
     try {
       const products = await db(`SELECT * FROM products WHERE needed = true;`);
 

@@ -32,10 +32,10 @@ const handleMenuClick = () => {
   return (
     <>
     <div ref={ref} className="navbarContainer relative flex justify-between">
-      <h1>Zero Waste</h1>
+      <h1 className="text-xl">Zero Waste</h1>
 
       <div className="">
-      <button className="btn px-4" onClick={handleMenuClick}>Menu</button>
+      <button className="btn btn-sm px-4" onClick={handleMenuClick}>Menu</button>
       {mainMenu && <div className=""><MobileMenu /></div>}
       </div>
       </div>

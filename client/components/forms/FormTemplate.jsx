@@ -58,12 +58,12 @@ const FormTemplate = () => {
 
   return (
     <div>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)} className="form-control">
         <div className="flex flex-col items-start p-10">
           <label>
             Your name:
             <input
-              className="pb-4"
+              className=""
               type="text"
               name="firstname"
               value={product.firstname}
@@ -82,7 +82,7 @@ const FormTemplate = () => {
             ></input>
           </label>
 
-          <div className="radio">
+          <div className="">
             <label>
               <input
                 type="radio"
@@ -94,7 +94,7 @@ const FormTemplate = () => {
               Fruits
             </label>
           </div>
-          <div className="radio">
+          <div className="">
             <label>
               <input
                 type="radio"
@@ -106,7 +106,7 @@ const FormTemplate = () => {
               Vegetable
             </label>
           </div>
-          <div className="radio">
+          <div className="">
             <label>
               <input
                 type="radio"
@@ -118,7 +118,7 @@ const FormTemplate = () => {
               Meat
             </label>
           </div>
-          <div className="radio">
+          <div className="">
             <label>
               <input
                 type="radio"
@@ -134,7 +134,7 @@ const FormTemplate = () => {
           <label className="flex flex-col">
             Description:
             <textarea
-              className=" h-20 w-80"
+              className=" h-24 mb-4 w-80 textarea textarea-bordered"
               type="text"
               name="description"
               value={product.description}
@@ -178,7 +178,7 @@ const FormTemplate = () => {
           
 
           <p>Is this something you need?</p>
-          <div className="radio">
+          <div className="">
             <label>
               <input
                 type="radio"
@@ -190,7 +190,7 @@ const FormTemplate = () => {
               yes
             </label>
           </div>
-          <div className="radio">
+          <div className="">
             <label>
               <input
                 type="radio"
