@@ -33,16 +33,16 @@ const handleChange = (e) => {
 
 const getProductByZipCode = async (searchInput) => { 
       
-    const response = await fetch(`${BASE_URL}/products?zip_code=${searchInput}`); 
+const response = await fetch(`${BASE_URL}/products?zip_code=${searchInput}`); 
    console.log(response);
    const data = await response.json();
    console.log(data);
-   const products= data.products;
+   const products= data.product;
    setAllProducts(products);
   
   };
 
-  console.log(searchInput)
+  console.log(allProducts)
 
     return ( 
 <>
