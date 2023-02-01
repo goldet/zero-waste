@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import SearchBarNew from "./SearchBarNew";
 
 const BASE_URL = "http://localhost:5000";
 
@@ -10,11 +11,8 @@ const FoodAvailable = () => {
   useEffect(() => {
     const getProducts = async () => {
       /*  setIsLoading(true) */
-      const response = await fetch(`${BASE_URL}/products?needed=false`); //?needed=false
-      console.log(response);
+      const response = await fetch(`${BASE_URL}/products?needed=false`); 
       const data = await response.json();
-      console.log(data);
-
       const products = data.products.data;
       setProducts(products);
       /*  setIsLoading(false) */
@@ -63,9 +61,14 @@ const FoodAvailable = () => {
                 {product.phone_number} <br /> Zip code: {product.zip_code}
               </div>
             </span>
+
+          
+
           </div>
-        ))}
     
+        ))}
+     <h1>BY ZIP CODE</h1>
+          <SearchBarNew />
     </>
   );
 };

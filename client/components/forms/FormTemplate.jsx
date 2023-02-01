@@ -10,7 +10,7 @@ const FormTemplate = () => {
     amount: Number,
     phone_number: "",
     zip_code: "",
-    needed: Boolean,
+    needed: false,
   });
 
   const [error, setError] = useState("");
