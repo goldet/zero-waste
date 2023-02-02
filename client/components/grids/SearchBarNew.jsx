@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 
 const BASE_URL = "http://localhost:5000";
 
-const SearchBarNew = () => {
+const SearchBarNew = ({ addZipCode }) => {
 const [searchInput, setSearchInput] = useState('')
-const [allProducts, setAllProducts] = useState(null)
+/* const [zipCodeProducts, setZipCodeProducts] = useState(null) */
 
 
 const handleChange = (e) => {
@@ -13,23 +13,24 @@ const handleChange = (e) => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+    addZipCode(searchInput)
 
-    getProductByZipCode(searchInput)
+    /* getProductByZipCode(searchInput) */
     
 };
 
-const getProductByZipCode = async (searchInput) => { 
+/* const getProductByZipCode = async (searchInput) => { 
       
 const response = await fetch(`${BASE_URL}/products?zip_code=${searchInput}`); 
    console.log(response);
    const data = await response.json();
    console.log(data);
    const products= data.product;
-   setAllProducts(products);
+   setZipCodeProducts(products);
   
-  };
+  }; */
 
-  console.log(allProducts)
+
 
     return ( 
 <>
@@ -49,9 +50,9 @@ className="input input-bordered w-full max-w-xs mt-2 items-center h-9"
    <button type="submit" className="btn btn-sm my-2">Search</button> {/* <Link type="submit"  href="/grids/location"> Search</Link> */}
    </form>
 
-
-{allProducts && 
-   allProducts.map((product) => (
+{/* 
+{zipCodeProducts && 
+   zipCodeProducts.map((product) => (
     <div key = {product.id}>
        <div className="container">
                 {" "}
@@ -61,7 +62,7 @@ className="input input-bordered w-full max-w-xs mt-2 items-center h-9"
                 {product.phone_number} <br /> Zip code: {product.zip_code}
               </div>
     </div>
-   ))}
+   ))} */}
 
 </>
 
