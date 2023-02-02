@@ -63,8 +63,11 @@ const FoodAvailable = () => {
       
      
        <SearchBarNew addZipCode={addZipCode}/>
-       {zipCodeProducts && 
-   zipCodeProducts.map((product) => (
+       <div>
+       {
+        (() => { 
+          if (zipCodeProducts === null && products) { 
+   /* zipCodeProducts.map((product) => (
     <div key = {product.id}>
        <div className="container">
                 {" "}
@@ -74,14 +77,14 @@ const FoodAvailable = () => {
                 {product.phone_number} <br /> Zip code: {product.zip_code}
               </div>
     </div>
-   ))}
+   )) */
 
 
 
 
 
-      {products &&
-        products.map((product) => (
+      
+        return (products.map((product) => (
           <div  key={product.id}>
            
             <button
@@ -106,9 +109,22 @@ const FoodAvailable = () => {
 
           
 
-          </div>
+          </div>)
     
-        ))}
+  )) } else if (zipCodeProducts) { return (zipCodeProducts.map((product) => (
+          <div key = {product.id}>
+             <div className="container">
+                      {" "}
+                      Product: {product.name} <br /> Type: {product.type} <br />{" "}
+                      Description: <br /> {product.description} <br /> Amount:{" "}
+                      {product.amount} <br /> Contact {product.firstname}:{" "}
+                      {product.phone_number} <br /> Zip code: {product.zip_code}
+                    </div>
+          </div>
+        )))}
+  })()
+}
+</div>
      
          
     </>
