@@ -8,6 +8,9 @@ const FoodAvailable = () => {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
 
+  //state to hold the products with the matching zip code
+  //add function to add the zip code to this component 
+
   useEffect(() => {
     const getProducts = async () => {
       /*  setIsLoading(true) */
@@ -40,9 +43,13 @@ const FoodAvailable = () => {
     <>
       <h1 className="text-4xl text-center pt-5 pb-10">Food to share!</h1>
 
+     {/*  search bar with ternary operator to show either just the zip codes or all products  */}
+       <SearchBarNew />
+
       {products &&
         products.map((product) => (
-          <div key={product.id}>
+          <div  key={product.id}>
+           
             <button
               className="deleteBtn"
               onClick={() => deleteProduct(product.id)}
@@ -52,6 +59,7 @@ const FoodAvailable = () => {
                 ✖️
               </span>
             </button>
+            
             <span>
               <div className="container">
                 {" "}
@@ -67,8 +75,8 @@ const FoodAvailable = () => {
           </div>
     
         ))}
-     <h1>BY ZIP CODE</h1>
-          <SearchBarNew />
+     
+         
     </>
   );
 };

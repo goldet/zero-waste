@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 
 const BASE_URL = "http://localhost:5000";
 const FormTemplate = () => {
@@ -37,6 +38,7 @@ const FormTemplate = () => {
     event.preventDefault();
 
     createProduct(product);
+    alert("Product added succesfully!");
   };
 
   const createProduct = async (product) => {
@@ -177,7 +179,7 @@ const FormTemplate = () => {
           </label>
           
 
-          <p>Is this something you need?</p>
+          <p>Is this something you need or is it to share?</p>
           <div className="">
             <label>
               <input
@@ -187,7 +189,7 @@ const FormTemplate = () => {
                 checked={product.needed === "true"}
                 onChange={(e) => handleTruefalse(e)}
               />
-              yes
+              Need
             </label>
           </div>
           <div className="">
@@ -199,7 +201,7 @@ const FormTemplate = () => {
                 checked={product.needed === "false"}
                 onChange={(e) => handleTruefalse(e)}
               />
-              no
+              Share
             </label>
           </div>
 
@@ -210,6 +212,16 @@ const FormTemplate = () => {
           </button>
         </div>
       </form>
+
+    <div className="flex flex-row gap-3 justify-center">
+      <div className=" btn2 h-8 my-3">
+      <Link className=" btn-glass btn-md text-lg rounded" href="/grids/foodavailable">View Food Available</Link>
+      </div>
+      <div className="btn2 flex h-8  my-3">
+      <Link className=" btn-glass btn-md text-lg rounded" href="/grids/foodneeds">View Food Needs</Link>
+      </div>
+      </div>
+
     </div>
   );
 };
