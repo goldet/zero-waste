@@ -1,72 +1,79 @@
-import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const BASE_URL = "http://localhost:5000";
 
-const SearchBarNew = ({ addZipCode }) => {
-const [searchInput, setSearchInput] = useState('')
-/* const [zipCodeProducts, setZipCodeProducts] = useState(null) */
+const SearchBarNew = ({ addZipCode, addProductName }) => {
+  const [searchInput, setSearchInput] = useState("");
+  const [searchInputProduct, setSearchInputProduct] = useState("");
 
-
-const handleChange = (e) => {
+  const handleChange = (e) => {
     setSearchInput(e.target.value);
+
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    addZipCode(searchInput)
+    addZipCode(searchInput);
+  };
 
-    /* getProductByZipCode(searchInput) */
+  const handleOnChange = (event) => {
+    setSearchInputProduct(event.target.value);
+
+  };
+  const handleOnSubmit = (ev) => {
+    ev.preventDefault();
+    addProductName(searchInputProduct);
+  };
+
+  return (
+    <>
     
+    <div className=" pl-12  md:justify-start lg:justify-start flex flex-col">
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <div className="form-control w-full max-w-xs">
+          <label className="label-text">
+            Search a location:
+            <input
+              className="input input-bordered w-full max-w-xs mt-2 items-center h-6"
+              type="text"
+              placeholder="zip code"
+              onChange={(e) => handleChange(e)}
+              value={searchInput}
+            />
+          </label>
+        </div>
+        <button type="submit" className="btn btn-outline btn-xs my-2">
+          Search
+        </button>{" "}
+       
+      </form>
+
+{/* by product */}
+      <form onSubmit={(ev) => handleOnSubmit(ev)}>
+        <div className="">
+        <div className="form-control w-full max-w-xs">
+          <label className="label-text">
+            Search a product:
+            <input
+              className="input input-bordered w-full max-w-xs mt-2 items-center h-6"
+              type="text"
+              placeholder="food item"
+              onChange={(event) => handleOnChange(event)}
+              value={searchInputProduct}
+            />
+          </label>
+        </div>
+        <button type="submit" className="btn btn-outline btn-xs my-2">
+          Search
+        </button>{" "}
+        </div>
+      </form>
+      </div>
+
+      
+   
+    
+    </>
+  );
 };
 
-/* const getProductByZipCode = async (searchInput) => { 
-      
-const response = await fetch(`${BASE_URL}/products?zip_code=${searchInput}`); 
-   console.log(response);
-   const data = await response.json();
-   console.log(data);
-   const products= data.product;
-   setZipCodeProducts(products);
-  
-  }; */
-
-
-
-    return ( 
-<>
-
-<form onSubmit={(e) => handleSubmit(e)}>
-<div className="form-control w-full max-w-xs">
-<label className="label-text">
-    Search a location:
-<input
-className="input input-bordered w-full max-w-xs mt-2 items-center h-9"
-   type="text"
-   placeholder="zip Code"
-   onChange={(e) => handleChange(e)}
-   value={searchInput} />
-   </label>
-   </div>
-   <button type="submit" className="btn btn-sm my-2">Search</button> {/* <Link type="submit"  href="/grids/location"> Search</Link> */}
-   </form>
-
-{/* 
-{zipCodeProducts && 
-   zipCodeProducts.map((product) => (
-    <div key = {product.id}>
-       <div className="container">
-                {" "}
-                Product: {product.name} <br /> Type: {product.type} <br />{" "}
-                Description: <br /> {product.description} <br /> Amount:{" "}
-                {product.amount} <br /> Contact {product.firstname}:{" "}
-                {product.phone_number} <br /> Zip code: {product.zip_code}
-              </div>
-    </div>
-   ))} */}
-
-</>
-
-     );
-}
- 
 export default SearchBarNew;

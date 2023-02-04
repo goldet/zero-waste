@@ -6,6 +6,7 @@ const BASE_URL = "http://localhost:5000";
 const FoodNeeds = () => {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
+  const [productName, setProductName] = useState(null);
 
    //state to hold the products with the matching zip code
    const [zipCodeProducts, setZipCodeProducts] = useState(null)
@@ -22,8 +23,22 @@ const FoodNeeds = () => {
       console.log(data);
       const products= data.product;
       setZipCodeProducts(products);
-     
      };
+
+     const addProductName = (searchInputProduct) => {
+      getProductByName(searchInputProduct);
+    };
+  
+    const getProductByName = async (searchInputProduct) => {
+      const response = await fetch(
+        `${BASE_URL}/products?needed=false&name=${searchInputProduct}`
+      ); /* figure out how to to search by productAND needed === false */
+      console.log(response);
+      const data = await response.json();
+      console.log(data);
+      const products = data.product;
+      setProductName(products);
+    };
 
   useEffect(() => {
     const getProducts = async () => {
@@ -58,72 +73,75 @@ const FoodNeeds = () => {
 
   return (
     <>
-      <h1 className="text-4xl text-center pt-5 pb-10">Food Needs!</h1>
+      <h1 className="text-3xl text-center pt-5 pb-5 font-bold">Food Needs</h1>
 
            {/*  search bar with ternary operator to show either just the zip codes or all products  */}
           
-       <SearchBarNew addZipCode={addZipCode}/>
-       <div>
-       {
-        (() => { 
-          if (zipCodeProducts === null && products) { 
-   /* zipCodeProducts.map((product) => (
-    <div key = {product.id}>
-       <div className="container">
-                {" "}
-                Product: {product.name} <br /> Type: {product.type} <br />{" "}
-                Description: <br /> {product.description} <br /> Amount:{" "}
-                {product.amount} <br /> Contact {product.firstname}:{" "}
-                {product.phone_number} <br /> Zip code: {product.zip_code}
-              </div>
-    </div>
-   )) */
-
-
-
-
-
-      
-        return (products.map((product) => (
-          <div  key={product.id}>
-           
-            <button
-              className="deleteBtn"
-              onClick={() => deleteProduct(product.id)}
-            >
-              {" "}
-              <span role="img" aria-label="delete button">
-                ✖️
-              </span>
-            </button>
-            
-            <span>
-              <div className="container">
-                {" "}
-                Product: {product.name} <br /> Type: {product.type} <br />{" "}
-                Description: <br /> {product.description} <br /> Amount:{" "}
-                {product.amount} <br /> Contact {product.firstname}:{" "}
-                {product.phone_number} <br /> Zip code: {product.zip_code}
-              </div>
-            </span>
-
+       <SearchBarNew addZipCode={addZipCode} addProductName={addProductName}/>
+       <div className="grid grid-cols-1 md:grid md:grid-cols-3 md:gap-52 md:m-10 lg:grid lg:grid-cols-3 lg:gap-20 lg:m-10 ">
+        {(() => {
           
-
-          </div>)
-    
-  )) } else if (zipCodeProducts) { return (zipCodeProducts.map((product) => (
-          <div key = {product.id}>
-             <div className="container">
-                      {" "}
-                      Product: {product.name} <br /> Type: {product.type} <br />{" "}
-                      Description: <br /> {product.description} <br /> Amount:{" "}
-                      {product.amount} <br /> Contact {product.firstname}:{" "}
-                      {product.phone_number} <br /> Zip code: {product.zip_code}
+          if (zipCodeProducts === null && productName === null && products) {
+            return products.map((product) => (
+              <div className="" key={product.id}>
+                <span>
+                  <div style={{ backgroundImage: `url("https://images.unsplash.com/photo-1454944338482-a69bb95894af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Ymxha2MlMjBhbmQlMjB3aGl0ZSUyMGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")` }} className="container card w-80 h-96 justify-center m-auto bg-base-100 shadow-xl  mb-6 card-body text-black md: lg: ">
+                    {" "}
+                    <div className="card-actions justify-end">
+                      <button
+                        className="deleteBtn btn2 h-10 w-10 bg-none "
+                        onClick={() => deleteProduct(product.id)}
+                      >
+                        {" "}
+                        <span role="img" aria-label="delete button">
+                          ✖️
+                        </span>
+                      </button>
                     </div>
-          </div>
-        )))}
-  })()
-}
+        
+                    <h1 className="card-title">Product: {product.name}</h1>{" "}
+                    <br /> Type: {product.type} <br /> Description: <br />{" "}
+                    {product.description} <br /> Amount: {product.amount} <br />{" "}
+                    Contact {product.firstname}: {product.phone_number}{" "}
+                    <div className="">Zip code: {product.zip_code} </div>
+                  </div>
+                </span>
+                
+              </div>
+              
+              
+            ));
+            
+          } else if (productName && !zipCodeProducts) {
+            return productName.map((product) => (
+              <div key={product.id}>
+                <div className="container card w-80 h-96 justify-center m-auto bg-base-100 shadow-xl  mb-6 card-body text-black">
+                  {" "}
+                  Product: {product.name} <br /> Type: {product.type} <br />{" "}
+                  Description: <br /> {product.description} <br /> Amount:{" "}
+                  {product.amount} <br /> Contact {product.firstname}:{" "}
+                  {product.phone_number} Zip code: {product.zip_code}
+                </div>
+              </div>
+            ));
+          } else if (zipCodeProducts && !productName) {
+            return zipCodeProducts.map((product) => (
+              <div key={product.id}>
+                <div className="container card w-80 h-96 justify-center m-auto bg-base-100 shadow-xl  mb-6 card-body text-black">
+                  {" "}
+                  Product: {product.name} <br /> Type: {product.type} <br />{" "}
+                  Description: <br /> {product.description} <br /> Amount:{" "}
+                  {product.amount} <br /> Contact {product.firstname}:{" "}
+                  {product.phone_number} Zip code: {product.zip_code}
+                </div>
+              </div>
+              
+            ));
+            
+          }
+           
+        })()}
+
 </div>
      
     </>

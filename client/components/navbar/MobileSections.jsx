@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const MobileSections = () => {
   return (<>
+
   
 <li className="list-none">
 <Link href="/">Home</Link>

@@ -8,17 +8,33 @@ const getProducts = async () => {
   return results.data;
 };
 
-/* GET users listing. */
-/* router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-}); */
 
 //send bakc full list of items
 router.get("/", async (req, res) => {
-     
+
+   const name = req.query.name
+   const zipCode = req.query.zip_code
+
+  //products is like %product info%
+if (name) {
+  try {
+    const response = await db(`SELECT * FROM products WHERE name LIKE '%${name}%';`);
+    const product = response.data;
+
+    if (!product) {
+      res.status(404).send();
+      return;
+    }
+    res.status(200).send({ product });
+  } catch (error) {
+    res.status(500).send(error);
+  
+  }
+}
+
   //zip code === zip code 
-  const zipCode = req.query.zip_code
-  if (zipCode) {
+  
+  else if (zipCode) {
    try {
     const response = await db(`SELECT * FROM products WHERE zip_code = ${zipCode};`);
     const product = response.data;

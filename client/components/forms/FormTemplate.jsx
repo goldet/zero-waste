@@ -61,8 +61,9 @@ const FormTemplate = () => {
   return (
     <div>
       <form onSubmit={(e) => handleSubmit(e)} className="form-control">
+        
         <div className="flex flex-col items-start p-10">
-          <label>
+          <label className="text-lg pb-3">
             Your name:
             <input
               className=""
@@ -73,10 +74,9 @@ const FormTemplate = () => {
             ></input>
           </label>
 
-          <label>
+          <label  className="text-lg pb-1">
             Product:
             <input
-              className=""
               type="text"
               name="name"
               value={product.name}
@@ -85,6 +85,7 @@ const FormTemplate = () => {
           </label>
 
           <div className="">
+            <p className="text-lg">Type:</p>
             <label>
               <input
                 type="radio"
@@ -123,6 +124,7 @@ const FormTemplate = () => {
           <div className="">
             <label>
               <input
+              
                 type="radio"
                 name="type"
                 value={"other"}
@@ -133,7 +135,7 @@ const FormTemplate = () => {
             </label>
           </div>
 
-          <label className="flex flex-col">
+          <label className="flex flex-col text-lg pt-3 pb-1">
             Description:
             <textarea
               className=" h-24 mb-4 w-80 textarea textarea-bordered"
@@ -145,10 +147,10 @@ const FormTemplate = () => {
             ></textarea>
           </label>
 
-          <label>
+          <label className="text-lg pb-3">
             Amount:
             <input
-              className="pb-4"
+              className=""
               type="number"
               name="amount"
               value={product.amount}
@@ -156,10 +158,10 @@ const FormTemplate = () => {
             ></input>
           </label>
 
-          <label>
+          <label className="text-lg pb-3">
             Phone number:
             <input
-              className="pb-4"
+              className=""
               type="text"
               name="phone_number"
               value={product.phone_number}
@@ -167,10 +169,10 @@ const FormTemplate = () => {
             ></input>
           </label>
 
-          <label>
+          <label className="text-lg pb-3">
             Zip Code:
             <input
-              className="pb-4"
+              className=""
               type="text"
               name="zip_code"
               value={product.zip_code}
@@ -179,7 +181,7 @@ const FormTemplate = () => {
           </label>
           
 
-          <p>Is this something you need or is it to share?</p>
+          <p className="text-base pb-3">Is this something you need or is it to share?</p>
           <div className="">
             <label>
               <input
