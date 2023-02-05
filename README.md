@@ -4,7 +4,7 @@
 This app attempts to help us move toward a goal of zero waste and increase community engagement by sharing excess food items in your home.
 
 ## Design 
-
+image.png 
 
 Currently I will be using a database with one table. In future iterations this will expand. 
 
