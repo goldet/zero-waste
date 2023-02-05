@@ -4,7 +4,8 @@
 This app attempts to help us move toward a goal of zero waste and increase community engagement by sharing excess food items in your home.
 
 ## Design 
-image.png 
+[ZeroWasteDatabase-dbdesigner (2).pdf](https://github.com/goldet/zero-waste/files/10614027/ZeroWasteDatabase-dbdesigner.2.pdf)
+
 
 Currently I will be using a database with one table. In future iterations this will expand. 
 
