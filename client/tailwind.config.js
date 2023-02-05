@@ -9,7 +9,11 @@ module.exports = {
     themes: ["light"],
   },
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        'fluid': 'repeat(auto-fit, 20rem)',
+    },
   },
   plugins: [require("daisyui")],
+}
 }

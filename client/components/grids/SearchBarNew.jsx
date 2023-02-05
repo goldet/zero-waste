@@ -27,7 +27,7 @@ const SearchBarNew = ({ addZipCode, addProductName }) => {
   return (
     <>
     
-    <div className=" pl-12  md:justify-start lg:justify-start flex flex-col">
+    <div className=" pl-12  md:items-center lg:items-center flex flex-col">
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="form-control w-full max-w-xs">
           <label className="label-text">
