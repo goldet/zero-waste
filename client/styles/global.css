@@ -68,3 +68,15 @@ h1 {
 input[type="radio"] {
   margin-right: 10px;
 }
+
+/* .parentContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin: 20px;
+
+}
+
+.container {
+display: block;
+width: 100%;
+} */

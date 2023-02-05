@@ -89,7 +89,7 @@ const FoodAvailable = () => {
      </div>
      </div> 
       
-      <div className="grid grid-cols-1 md:grid md:grid-cols-3 md:m-10 md:gap-52 lg:grid lg:grid-cols-3 lg:gap-40 lg:m-10 ">
+      <div className="parentContainer gap-20 grid grid-cols-1 md:grid md:grid-cols-3 md:m-10 md:gap-52 lg:grid lg:grid-cols-3 lg:gap-40 lg:m-10  ">  {/* grid grid-cols-1 md:grid md:grid-cols-3 md:m-10 md:gap-52 lg:grid lg:grid-cols-3 lg:gap-40 lg:m-10 */}
         {(() => {
           
           if (zipCodeProducts === null && productName === null && products) {
@@ -100,7 +100,7 @@ const FoodAvailable = () => {
              
 
                 
-                  <div style={{ backgroundImage: `url("https://images.unsplash.com/photo-1454944338482-a69bb95894af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Ymxha2MlMjBhbmQlMjB3aGl0ZSUyMGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")` }} className="container card w-80 h-96 justify-center m-auto bg-base-100 shadow-xl  mb-6 card-body text-black ">
+                  <div style={{ backgroundImage: `url("https://images.unsplash.com/photo-1454944338482-a69bb95894af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Ymxha2MlMjBhbmQlMjB3aGl0ZSUyMGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")` }} className="container card w-80 h-96 justify-center text-start m-auto bg-base-100 shadow-xl  mb-6 card-body text-black ">
                    
                     {" "}
 
@@ -133,7 +133,7 @@ const FoodAvailable = () => {
           } else if (productName && !zipCodeProducts) {
             return productName.map((product) => (
               <div key={product.id}>
-                <div className="container card w-80 h-96 justify-center m-auto bg-base-100 shadow-xl  mb-6 card-body text-black">
+                  <div style={{ backgroundImage: `url("https://images.unsplash.com/photo-1454944338482-a69bb95894af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Ymxha2MlMjBhbmQlMjB3aGl0ZSUyMGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")` }} className="container card w-80 h-96 justify-center text-start m-auto bg-base-100 shadow-xl  mb-6 card-body text-black ">
                   {" "}
                   Product: {product.name} <br /> Type: {product.type} <br />{" "}
                   Description: <br /> {product.description} <br /> Amount:{" "}
@@ -145,7 +145,7 @@ const FoodAvailable = () => {
           } else if (zipCodeProducts && !productName) {
             return zipCodeProducts.map((product) => (
               <div key={product.id}>
-                <div className="container card w-80 h-96 justify-center m-auto bg-base-100 shadow-xl  mb-6 card-body text-black">
+                  <div style={{ backgroundImage: `url("https://images.unsplash.com/photo-1454944338482-a69bb95894af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Ymxha2MlMjBhbmQlMjB3aGl0ZSUyMGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")` }} className="container card w-80 h-96 justify-center text-start m-auto bg-base-100 shadow-xl  mb-6 card-body text-black ">
                   {" "}
                   Product: {product.name} <br /> Type: {product.type} <br />{" "}
                   Description: <br /> {product.description} <br /> Amount:{" "}
