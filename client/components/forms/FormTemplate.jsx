@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
+import { FiArrowRight } from "react-icons/fi";
 
 const BASE_URL = "http://localhost:5000";
 const FormTemplate = () => {
@@ -59,14 +60,17 @@ const FormTemplate = () => {
   };
 
   return (
+   
     <div>
+   
+
       <form onSubmit={(e) => handleSubmit(e)} className="form-control">
         
         <div className="flex flex-col items-start p-10">
-          <label className="text-lg pb-3">
+          <label className="text-lg pb-3  text-slate-600">
             Your name:
             <input
-              className=""
+              className="rounded-md ml-1"
               type="text"
               name="firstname"
               value={product.firstname}
@@ -74,9 +78,10 @@ const FormTemplate = () => {
             ></input>
           </label>
 
-          <label  className="text-lg pb-1">
+          <label  className="text-lg pb-1  text-slate-600">
             Product:
             <input
+            className="rounded-md ml-1"
               type="text"
               name="name"
               value={product.name}
@@ -84,8 +89,8 @@ const FormTemplate = () => {
             ></input>
           </label>
 
-          <div className="">
-            <p className="text-lg">Type:</p>
+          <div className=" text-slate-600">
+            <p className="text-lg  text-slate-600">Type:</p>
             <label>
               <input
                 type="radio"
@@ -97,7 +102,7 @@ const FormTemplate = () => {
               Fruits
             </label>
           </div>
-          <div className="">
+          <div className=" text-slate-600">
             <label>
               <input
                 type="radio"
@@ -109,7 +114,7 @@ const FormTemplate = () => {
               Vegetable
             </label>
           </div>
-          <div className="">
+          <div className=" text-slate-600">
             <label>
               <input
                 type="radio"
@@ -121,10 +126,10 @@ const FormTemplate = () => {
               Meat
             </label>
           </div>
-          <div className="">
+          <div className=" text-slate-600">
             <label>
               <input
-              
+                
                 type="radio"
                 name="type"
                 value={"other"}
@@ -135,10 +140,10 @@ const FormTemplate = () => {
             </label>
           </div>
 
-          <label className="flex flex-col text-lg pt-3 pb-1">
+          <label className="flex flex-col text-start text-lg pt-3 pb-1  text-slate-600">
             Description:
             <textarea
-              className=" h-24 mb-4 w-80 textarea textarea-bordered"
+              className=" h-24 mb-4 w-80 textarea bg-opacity-25 textarea-bordered"
               type="text"
               name="description"
               value={product.description}
@@ -147,10 +152,10 @@ const FormTemplate = () => {
             ></textarea>
           </label>
 
-          <label className="text-lg pb-3">
+          <label className="text-lg pb-3 text-slate-600">
             Amount:
             <input
-              className=""
+              className="rounded-md ml-1"
               type="number"
               name="amount"
               value={product.amount}
@@ -158,10 +163,10 @@ const FormTemplate = () => {
             ></input>
           </label>
 
-          <label className="text-lg pb-3">
+          <label className="text-lg pb-3  text-slate-600">
             Phone number:
             <input
-              className=""
+              className="rounded-md ml-1"
               type="text"
               name="phone_number"
               value={product.phone_number}
@@ -169,10 +174,10 @@ const FormTemplate = () => {
             ></input>
           </label>
 
-          <label className="text-lg pb-3">
+          <label className="text-lg pb-3  text-slate-600">
             Zip Code:
             <input
-              className=""
+              className="rounded-md ml-1"
               type="text"
               name="zip_code"
               value={product.zip_code}
@@ -181,8 +186,8 @@ const FormTemplate = () => {
           </label>
           
 
-          <p className="text-base pb-3">Is this something you need or is it to share?</p>
-          <div className="">
+          <p className="text-base pb-3  text-slate-600">Is this something you need or is it to share?</p>
+          <div className=" text-slate-600">
             <label>
               <input
                 type="radio"
@@ -194,9 +199,10 @@ const FormTemplate = () => {
               Need
             </label>
           </div>
-          <div className="">
+          <div className=" text-slate-600">
             <label>
               <input
+              
                 type="radio"
                 name="needed"
                 value={"false"}
@@ -208,23 +214,32 @@ const FormTemplate = () => {
           </div>
 
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-start ml-8">
           <button type="submit" className="btn2 w-20">
             Submit
           </button>
         </div>
       </form>
 
-    <div className="flex flex-row gap-3 justify-center">
-      <div className=" btn2 h-8 my-3">
-      <Link className=" btn-glass btn-md text-lg rounded" href="/grids/foodavailable">View Food Available</Link>
+    <div className="flex flex-row justify-start ml-7 mt-3">
+      <div className="dropdown dropdown-top">
+      <label tabIndex={0} className="btn m-1 mb-3"> <FiArrowRight/> </label>
+      <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+      <div className="btn btn-xs mb-3">
+      
+     
+      <Link className="text-base rounded" href="/grids/foodavailable">Food Available</Link>
       </div>
-      <div className="btn2 flex h-8  my-3">
-      <Link className=" btn-glass btn-md text-lg rounded" href="/grids/foodneeds">View Food Needs</Link>
+      <div className="btn btn-xs ">
+      <Link className=" text-base rounded" href="/grids/foodneeds">Food Needs</Link>
+      
+      </div>
+      </ul>
       </div>
       </div>
 
     </div>
+   
   );
 };
 

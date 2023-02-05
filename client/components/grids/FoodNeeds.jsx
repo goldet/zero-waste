@@ -74,7 +74,7 @@ const FoodNeeds = () => {
   return (
     <>
      <div className="hero min-h-screen" style={{ backgroundImage: `url("https://images.unsplash.com/photo-1673097628302-94de4461704c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=782&q=80")` }}>
-         <div className="hero-overlay bg-opacity-60"></div>
+         <div className="hero-overlay bg-opacity-30 md:bg-opacity-60 lg:bg-opacity-60"></div>
          <div className="text-center text-neutral-content">
       <h1 className="text-3xl text-center pt-5 pb-5 font-bold">Food Needs</h1>
 
@@ -89,7 +89,7 @@ const FoodNeeds = () => {
      </div>
      </div> 
       
-      <div className="grid grid-cols-1 md:grid md:grid-cols-3 md:m-10 md:gap-52 lg:grid lg:grid-cols-3 lg:gap-40 lg:m-10 ">
+      <div className="parentContainer gap-10 ">
         {(() => {
           
           if (zipCodeProducts === null && productName === null && products) {
@@ -100,7 +100,7 @@ const FoodNeeds = () => {
              
 
                 
-                  <div style={{ backgroundImage: `url("https://images.unsplash.com/photo-1454944338482-a69bb95894af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Ymxha2MlMjBhbmQlMjB3aGl0ZSUyMGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")` }} className="container card w-80 h-96 justify-center text-start m-auto bg-base-100 shadow-xl  mb-6 card-body text-black ">
+                  <div style={{ backgroundImage: `url("https://images.unsplash.com/photo-1454944338482-a69bb95894af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Ymxha2MlMjBhbmQlMjB3aGl0ZSUyMGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")` }} className="container card w-80 h-96 justify-center text-start bg-base-100 shadow-xl  mb-6 card-body text-black ">
                    
                     {" "}
 
@@ -135,7 +135,7 @@ const FoodNeeds = () => {
               <div key={product.id}>
                   <div style={{ backgroundImage: `url("https://images.unsplash.com/photo-1454944338482-a69bb95894af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Ymxha2MlMjBhbmQlMjB3aGl0ZSUyMGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")` }} className="container card w-80 h-96 justify-center text-start m-auto bg-base-100 shadow-xl  mb-6 card-body text-black ">
                   {" "}
-                  Product: {product.name} <br /> Type: {product.type} <br />{" "}
+                  <h1 className="card-title"> Product: {product.name}</h1> <br /> Type: {product.type} <br />{" "}
                   Description: <br /> {product.description} <br /> Amount:{" "}
                   {product.amount} <br /> Contact {product.firstname}:{" "}
                   {product.phone_number} <br /> Zip code: {product.zip_code}
@@ -147,7 +147,7 @@ const FoodNeeds = () => {
               <div key={product.id}>
                   <div style={{ backgroundImage: `url("https://images.unsplash.com/photo-1454944338482-a69bb95894af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Ymxha2MlMjBhbmQlMjB3aGl0ZSUyMGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")` }} className="container card w-80 h-96 justify-center text-start m-auto bg-base-100 shadow-xl  mb-6 card-body text-black ">
                   {" "}
-                  Product: {product.name} <br /> Type: {product.type} <br />{" "}
+                  <h1 className="card-title">Product: {product.name}</h1><br /> Type: {product.type} <br />{" "}
                   Description: <br /> {product.description} <br /> Amount:{" "}
                   {product.amount} <br /> Contact {product.firstname}:{" "}
                   {product.phone_number} <br /> Zip code: {product.zip_code}
