@@ -5,13 +5,11 @@ This app attempts to help us move toward a goal of zero waste and increase commu
 
 ## Design 
 
-![2zerowastedatabase](https://user-images.githubusercontent.com/112785177/212876420-85a6ce32-0afc-4cc7-ad31-6088d2bc6e46.png)
 
-This is the database I will be using. Currently it will have two tables:
+Currently I will be using a database with one table. In future iterations this will expand. 
 
-One table will be storing the products that people are giving away. This will include an automatically assigned ID, the products, the amount they have, and a contact number.
+The table will be storing the products that people are giving away or that people need. This will include an automatically assigned ID, the person's name, the products, the amount they have/needed, the type of product it is, a description, a contact phone number, and the zip code.
 
-The next table will store the products that people need. This will include an automatically assigned ID, the products, the amount they need, and a contact number.
 
 [MVP Zero Waste_ API Routes Design (1).pdf](https://github.com/goldet/zerowaste/files/10433415/MVP.Zero.Waste_.API.Routes.Design.1.pdf)
 
@@ -38,10 +36,12 @@ Visit http://localhost:3000 to view your application
 
 run npm install then run npm run start
 
-###### Install Tailwind with next.js
+###### Install Tailwind and Daisy UI with next.js
 
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
+
+npm i daisyui
 
 
 This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona.
