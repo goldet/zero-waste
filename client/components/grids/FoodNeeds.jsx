@@ -66,13 +66,13 @@ const FoodNeeds = () => {
       >
         <div className="hero-overlay bg-opacity-30 md:bg-opacity-60 lg:bg-opacity-60"></div>
         <div className="text-center text-neutral-content">
-          <h1 className="text-3xl text-center pt-5 pb-5 font-bold">
+          <h1 className="text-3xl text-center pt-5 pb-5 font-bold pl-8">
             Food Needs
           </h1>
 
           <div className="collapse">
             <input type="checkbox" className="peer" />
-            <div className="collapse-title  pl-16 text-lg">
+            <div className="collapse-title  pl-20 text-lg">
               Click to search by product or location
             </div>
             <div className="collapse-content  peer-checked: peer-checked:">
@@ -120,8 +120,13 @@ const FoodNeeds = () => {
           </div>
           <div className="parentContainer gap-10">
             {" "}
-            {filtProducts.length === 0 ? (<h1>No Results Found</h1>) : (
-              filtProducts.map((product) => (
+            {filtProducts && filtProducts.length === 0 && <div className="ml-8 alert alert-error shadow-lg">
+  <div>
+    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6 " fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+    <span className="">There are no items that match this search!</span>
+  </div>
+</div>}
+             {filtProducts && filtProducts.length > 0 && filtProducts.map((product) => (
                 <div className="" key={product.id}>
                   <span>
                     <div
@@ -141,7 +146,7 @@ const FoodNeeds = () => {
                       <div className="">Zip code: {product.zip_code} </div>
                     </div>
                   </span>
-                </div>)
+                </div>
               ))}
           </div>
         </div>
