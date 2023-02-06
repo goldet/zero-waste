@@ -61,10 +61,21 @@ const FormTemplate = () => {
       }
       await sleep(3000)
       setSuccess(false)
+     
  /*      window.location.reload(); */
     } catch (error) {
       setError("Something went wrong! Please try again later.");
     } finally {
+      setProduct({
+        firstname: "",
+        name: "",
+        type: "",
+        description: "",
+        amount: 0,
+        phone_number: "",
+        zip_code: "",
+        needed: false,
+      })
 
     }
    
