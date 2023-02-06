@@ -14,11 +14,14 @@ router.get("/", async (req, res) => {
 
    const name = req.query.name
    const zipCode = req.query.zip_code
+   const needed = req.query.needed
+
+   console.log(name)
 
   //products is like %product info%
-if (name) {
+if (name && needed === 'false') {
   try {
-    const response = await db(`SELECT * FROM products WHERE name LIKE '%${name}%';`);
+    const response = await db(`SELECT * FROM products WHERE needed = false AND name LIKE '%${name}%';`);
     const product = response.data;
 
     if (!product) {

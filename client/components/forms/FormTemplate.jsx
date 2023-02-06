@@ -16,6 +16,7 @@ const FormTemplate = () => {
   });
 
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const handleTruefalse = (ev) => {
     const trueFalse = ev.target.value;
