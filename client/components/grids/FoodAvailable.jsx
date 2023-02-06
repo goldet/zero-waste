@@ -54,8 +54,13 @@ const FoodAvailable = () => {
         },
         body: JSON.stringify(products),
       });
+     const notDeleted = products.filter(
+        (product) =>
+          product.id != id
+      );
+     setProducts(notDeleted)
 
-      window.location.reload();
+      /* window.location.reload(); */
     } catch (error) {
       setError("Oops! Something went wrong. Try again later");
     }
