@@ -7,7 +7,7 @@ const FoodNeeds = () => {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
 
-  const [filtProducts, setFiltProducts] = useState(null);
+  const [filtProducts, setFiltProducts] = useState("");
 
   //add function to add the zip code to this component
   const addZipCode = (searchInput) => {
@@ -120,7 +120,7 @@ const FoodNeeds = () => {
           </div>
           <div className="parentContainer gap-10">
             {" "}
-            {filtProducts &&
+            {filtProducts.length === 0 ? (<h1>No Results Found</h1>) : (
               filtProducts.map((product) => (
                 <div className="" key={product.id}>
                   <span>
@@ -141,7 +141,7 @@ const FoodNeeds = () => {
                       <div className="">Zip code: {product.zip_code} </div>
                     </div>
                   </span>
-                </div>
+                </div>)
               ))}
           </div>
         </div>
