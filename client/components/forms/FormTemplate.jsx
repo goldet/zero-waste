@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { FiArrowRight } from "react-icons/fi";
+import GridButtons from "./GridButtons";
 
 const BASE_URL = "http://localhost:5000";
 const FormTemplate = () => {
@@ -21,7 +22,7 @@ const FormTemplate = () => {
   const handleTruefalse = (ev) => {
     const trueFalse = ev.target.value;
     setProduct((product) => ({ ...product, needed: trueFalse }));
-  }
+  };
 
   const handleRadio = (e) => {
     console.log(e.target.name);
@@ -41,7 +42,7 @@ const FormTemplate = () => {
 
     createProduct(product);
     alert("Product added succesfully!");
-    setSuccess(true)
+    setSuccess(true);
   };
 
   const createProduct = async (product) => {
@@ -62,12 +63,8 @@ const FormTemplate = () => {
   };
 
   return (
-   
     <div>
-   
-
       <form onSubmit={(e) => handleSubmit(e)} className="form-control">
-        
         <div className="flex flex-col items-start p-10">
           <label className="text-lg pb-3  text-slate-600">
             Your name:
@@ -80,10 +77,10 @@ const FormTemplate = () => {
             ></input>
           </label>
 
-          <label  className="text-lg pb-1  text-slate-600">
+          <label className="text-lg pb-1  text-slate-600">
             Product:
             <input
-            className="rounded-md ml-1"
+              className="rounded-md ml-1"
               type="text"
               name="name"
               value={product.name}
@@ -131,7 +128,6 @@ const FormTemplate = () => {
           <div className=" text-slate-600">
             <label>
               <input
-                
                 type="radio"
                 name="type"
                 value={"other"}
@@ -186,9 +182,10 @@ const FormTemplate = () => {
               onChange={(e) => handleChange(e)}
             ></input>
           </label>
-          
 
-          <p className="text-base pb-3  text-slate-600">Is this something you need or is it to share?</p>
+          <p className="text-base pb-3  text-slate-600">
+            Is this something you need or is it to share?
+          </p>
           <div className=" text-slate-600">
             <label>
               <input
@@ -204,7 +201,6 @@ const FormTemplate = () => {
           <div className=" text-slate-600">
             <label>
               <input
-              
                 type="radio"
                 name="needed"
                 value={"false"}
@@ -214,7 +210,6 @@ const FormTemplate = () => {
               Share
             </label>
           </div>
-
         </div>
         <div className="flex justify-start ml-8">
           <button type="submit" className="btn2 w-20">
@@ -223,26 +218,8 @@ const FormTemplate = () => {
         </div>
       </form>
 
-
-    <div className="flex flex-row justify-start ml-7 mt-3">
-      <div className="dropdown dropdown-top">
-      <label tabIndex={0} className="btn m-1 mb-3"> <FiArrowRight/> </label>
-      <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-      <div className="btn btn-xs mb-3">
-      
-     
-      <Link className="text-base rounded" href="/grids/foodavailable">Food Available</Link>
-      </div>
-      <div className="btn btn-xs ">
-      <Link className=" text-base rounded" href="/grids/foodneeds">Food Needs</Link>
-      
-      </div>
-      </ul>
-      </div>
-      </div>
-
+      <GridButtons />
     </div>
-   
   );
 };
 

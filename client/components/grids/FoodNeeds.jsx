@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Card from "./Card";
 import React, { useState, useEffect } from "react";
 import SearchBarNew from "./SearchBarNew";
