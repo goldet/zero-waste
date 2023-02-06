@@ -41,6 +41,7 @@ const FormTemplate = () => {
 
     createProduct(product);
     alert("Product added succesfully!");
+    setSuccess(true)
   };
 
   const createProduct = async (product) => {
@@ -221,6 +222,7 @@ const FormTemplate = () => {
           </button>
         </div>
       </form>
+
 
     <div className="flex flex-row justify-start ml-7 mt-3">
       <div className="dropdown dropdown-top">

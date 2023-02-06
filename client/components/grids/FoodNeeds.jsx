@@ -1,3 +1,5 @@
+import Link from "next/link";
+import Card from "./Card";
 import React, { useState, useEffect } from "react";
 import SearchBarNew from "./SearchBarNew";
 
@@ -34,11 +36,18 @@ const FoodNeeds = () => {
       console.log(data);
 
       const products = data.products.data;
+
       setProducts(products);
       /*  setIsLoading(false) */
     };
     getProducts();
   }, []);
+
+  const handleOnClick = (event) => {
+    event.preventDefault();
+    setFiltProducts("");
+    setProducts(products);
+  };
 
   const deleteProduct = async (id) => {
     try {
@@ -86,68 +95,55 @@ const FoodNeeds = () => {
           <div className="parentContainer gap-10">
             {products &&
               !filtProducts &&
-              products.map((product) => (
-                <div className="" key={product.id}>
-                  <span>
-                    <div
-                      style={{
-                        backgroundImage: `url("https://images.unsplash.com/photo-1454944338482-a69bb95894af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Ymxha2MlMjBhbmQlMjB3aGl0ZSUyMGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")`,
-                      }}
-                      className="container card w-80 h-96 justify-center text-start bg-base-100 shadow-xl mb-6 card-body text-black "
-                    >
-                      {" "}
-                      <div className="card-actions justify-end">
-                        <button
-                          className="deleteBtn btn2 h-10 w-10 bg-none "
-                          onClick={() => deleteProduct(product.id)}
-                        >
-                          {" "}
-                          <span role="img" aria-label="delete button">
-                            ✖️
-                          </span>
-                        </button>
-                      </div>
-                      <h1 className="card-title">Product: {product.name}</h1>{" "}
-                      <br /> Type: {product.type} <br /> Description: <br />{" "}
-                      {product.description} <br /> Amount: {product.amount}{" "}
-                      <br /> Contact {product.firstname}: {product.phone_number}{" "}
-                      <br />{" "}
-                      <div className="">Zip code: {product.zip_code} </div>
-                    </div>
-                  </span>
-                </div>
-              ))}
+              products.map((product) => <Card product={product} />)}
           </div>
           <div className="parentContainer gap-10">
             {" "}
-            {filtProducts && filtProducts.length === 0 && <div className="ml-8 alert alert-error shadow-lg">
-  <div>
-    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6 " fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-    <span className="">There are no items that match this search!</span>
-  </div>
-</div>}
-             {filtProducts && filtProducts.length > 0 && filtProducts.map((product) => (
-                <div className="" key={product.id}>
-                  <span>
-                    <div
-                      style={{
-                        backgroundImage: `url("https://images.unsplash.com/photo-1454944338482-a69bb95894af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Ymxha2MlMjBhbmQlMjB3aGl0ZSUyMGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")`,
-                      }}
-                      className="container card w-80 h-96 justify-center text-start bg-base-100 shadow-xl mb-6 card-body text-black "
-                    >
-                      {" "}
-                      <h1 className="card-title">
-                        Product: {product.name}
-                      </h1>{" "}
-                      <br /> Type: {product.type} <br /> Description: <br />{" "}
-                      {product.description} <br /> Amount: {product.amount}{" "}
-                      <br /> Contact {product.firstname}: {product.phone_number}{" "}
-                      <br />{" "}
-                      <div className="">Zip code: {product.zip_code} </div>
-                    </div>
+            {filtProducts && filtProducts.length === 0 && (
+              <div className="ml-8 alert alert-error shadow-lg">
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="stroke-current flex-shrink-0 h-6 w-6 "
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span className="">
+                    There are no items that match this search!
                   </span>
                 </div>
-              ))}
+                <btn
+                  onClick={(event) => handleOnClick(event)}
+                  href="/grids/foodneeds"
+                  className="btn"
+                >
+                  Go Back
+                </btn>
+              </div>
+            )}
+            {filtProducts && filtProducts.length > 0 && (
+              <>
+                {filtProducts.map((product) => (
+                  <Card product={product} />
+                ))}
+                <div className="">
+                  <btn
+                    onClick={(event) => handleOnClick(event)}
+                    href="/grids/foodneeds"
+                    className="btn w-32 "
+                  >
+                    Go Back
+                  </btn>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
