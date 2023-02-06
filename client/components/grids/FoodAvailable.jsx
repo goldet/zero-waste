@@ -89,7 +89,7 @@ const FoodAvailable = () => {
           <div className="parentContainer gap-10">
             {products &&
               !filtProducts &&
-              products.map((product) => <Card product={product} />)}
+              products.map((product) => <Card product={product} deleteProduct={deleteProduct}/>)}
             {filtProducts && filtProducts.length === 0 && (
               <div className="ml-8 alert alert-error shadow-lg">
                 <div>
@@ -122,7 +122,7 @@ const FoodAvailable = () => {
             {filtProducts && filtProducts.length > 0 && (
               <>
                 {filtProducts.map((product) => (
-                  <Card product={product} />
+                  <Card product={product} deleteProduct={deleteProduct}/>
                 ))}
                 <btn
                   onClick={(e) => handleOnClick2(e)}

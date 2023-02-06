@@ -1,4 +1,4 @@
-const Card = ({ product }) => {
+const Card = ({ product, deleteProduct }) => {
   return (
     <div className="" key={product.id}>
       <span>

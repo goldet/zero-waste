@@ -94,7 +94,7 @@ const FoodNeeds = () => {
           <div className="parentContainer gap-10">
             {products &&
               !filtProducts &&
-              products.map((product) => <Card product={product} />)}
+              products.map((product) => <Card product={product} deleteProduct={deleteProduct}/>)}
           </div>
           <div className="parentContainer gap-10">
             {" "}
@@ -130,7 +130,7 @@ const FoodNeeds = () => {
             {filtProducts && filtProducts.length > 0 && (
               <>
                 {filtProducts.map((product) => (
-                  <Card product={product} />
+                  <Card product={product} deleteProduct={deleteProduct}/>
                 ))}
                 <div className="">
                   <btn

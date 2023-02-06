@@ -1,7 +1,6 @@
 import { useState } from "react";
-import Link from "next/link";
-import { FiArrowRight } from "react-icons/fi";
 import GridButtons from "./GridButtons";
+import SuccessAlert from "./SuccessAlert";
 
 const BASE_URL = "http://localhost:5000";
 const FormTemplate = () => {
@@ -10,7 +9,7 @@ const FormTemplate = () => {
     name: "",
     type: "",
     description: "",
-    amount: Number,
+    amount: 0,
     phone_number: "",
     zip_code: "",
     needed: false,
@@ -19,13 +18,14 @@ const FormTemplate = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
+
+  //need vs share radio option in form
   const handleTruefalse = (ev) => {
     const trueFalse = ev.target.value;
     setProduct((product) => ({ ...product, needed: trueFalse }));
   };
 
   const handleRadio = (e) => {
-    console.log(e.target.name);
     const foodType = e.target.value;
     setProduct((product) => ({ ...product, type: foodType }));
   };
@@ -41,8 +41,8 @@ const FormTemplate = () => {
     event.preventDefault();
 
     createProduct(product);
-    alert("Product added succesfully!");
-    setSuccess(true);
+    /* alert("Product added succesfully!"); */
+ 
   };
 
   const createProduct = async (product) => {
@@ -54,16 +54,28 @@ const FormTemplate = () => {
         },
         body: JSON.stringify(product),
       });
-      window.location.reload();
+      setSuccess(true)
+
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+      await sleep(3000)
+      setSuccess(false)
+ /*      window.location.reload(); */
     } catch (error) {
       setError("Something went wrong! Please try again later.");
     } finally {
+
     }
-    console.log(product);
+   
   };
 
   return (
     <div>
+      
+      {success ? ( <SuccessAlert /> ) : (
+
+<>
       <form onSubmit={(e) => handleSubmit(e)} className="form-control">
         <div className="flex flex-col items-start p-10">
           <label className="text-lg pb-3  text-slate-600">
@@ -216,10 +228,12 @@ const FormTemplate = () => {
             Submit
           </button>
         </div>
-      </form>
+      </form> 
+     
 
-      <GridButtons />
-    </div>
+      <GridButtons /> 
+      </>)}
+    </div> 
   );
 };
 
