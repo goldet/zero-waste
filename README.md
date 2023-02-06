@@ -37,12 +37,5 @@ Visit http://localhost:3000 to view your application
 
 run npm install then run npm run start
 
-###### Install Tailwind and Daisy UI with next.js
-
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
-
-npm i daisyui
-
 
 This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona.
