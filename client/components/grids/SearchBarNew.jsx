@@ -13,6 +13,7 @@ const SearchBarNew = ({ addZipCode, addProductName }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     addZipCode(searchInput);
+    setSearchInput("")
   };
 
   const handleOnChange = (event) => {
@@ -22,6 +23,7 @@ const SearchBarNew = ({ addZipCode, addProductName }) => {
   const handleOnSubmit = (ev) => {
     ev.preventDefault();
     addProductName(searchInputProduct);
+    setSearchInputProduct("")
   };
 
   return (
