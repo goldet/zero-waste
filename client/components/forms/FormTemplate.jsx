@@ -1,6 +1,7 @@
 import { useState } from "react";
 import GridButtons from "./GridButtons";
 import SuccessAlert from "./SuccessAlert";
+import axios from "axios";
 
 const BASE_URL = "http://localhost:5000";
 const FormTemplate = () => {
@@ -15,9 +16,10 @@ const FormTemplate = () => {
     needed: false,
   });
 
+  const [image, setImage] = useState(null);
+
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-
 
   //need vs share radio option in form
   const handleTruefalse = (ev) => {
@@ -37,12 +39,45 @@ const FormTemplate = () => {
     setProduct((product) => ({ ...product, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  /* const handleImage = (e) => {
+    setImage((e.target.files[0])) */
+  /*   const file = e.target.files[0];
+    setImageInput(file);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImage(reader.result);
+      // Upload the image to the server
+      axios
+        .post("http://localhost:3000/upload", { image: file })
+        .then((response) => {
+          console.log("Image uploaded successfully", response.data);
+        })
+        .catch((error) => {
+          console.error("Error uploading image")}
+  
+   
+        )}} */
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    const formData = new FormData();
+    formData.append("image", image);
+    try {
+      const response = await axios({
+        method: "post",
+        url: `${BASE_URL}/images/single`,
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+    } catch (error) {
+      console.log(error);
+    }
 
     createProduct(product);
-    /* alert("Product added succesfully!"); */
- 
+  };
+
+  const handleImage = (e) => {
+    setImage(e.target.files[0]);
   };
 
   const createProduct = async (product) => {
@@ -54,15 +89,15 @@ const FormTemplate = () => {
         },
         body: JSON.stringify(product),
       });
-      setSuccess(true)
+      setSuccess(true);
 
       function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
+        return new Promise((resolve) => setTimeout(resolve, ms));
       }
-      await sleep(3000)
-      setSuccess(false)
-     
- /*      window.location.reload(); */
+      await sleep(3000);
+      setSuccess(false);
+
+      /*      window.location.reload(); */
     } catch (error) {
       setError("Something went wrong! Please try again later.");
     } finally {
@@ -75,176 +110,184 @@ const FormTemplate = () => {
         phone_number: "",
         zip_code: "",
         needed: false,
-      })
-
+      });
     }
-   
   };
 
   return (
     <div>
-      
-      {success ? ( <SuccessAlert /> ) : (
+      {success ? (
+        <SuccessAlert />
+      ) : (
+        <>
+          <form onSubmit={(e) => handleSubmit(e)} className="form-control">
+            <div className="flex flex-col items-start p-10">
+              <label className="text-lg pb-3  text-slate-600">
+                Your name:
+                <input
+                  className="rounded-md ml-1"
+                  type="text"
+                  name="firstname"
+                  value={product.firstname}
+                  onChange={(e) => handleChange(e)}
+                ></input>
+              </label>
 
-<>
-      <form onSubmit={(e) => handleSubmit(e)} className="form-control">
-        <div className="flex flex-col items-start p-10">
-          <label className="text-lg pb-3  text-slate-600">
-            Your name:
-            <input
-              className="rounded-md ml-1"
-              type="text"
-              name="firstname"
-              value={product.firstname}
-              onChange={(e) => handleChange(e)}
-            ></input>
-          </label>
+              <label className="text-lg pb-1  text-slate-600">
+                Product:
+                <input
+                  className="rounded-md ml-1"
+                  type="text"
+                  name="name"
+                  value={product.name}
+                  onChange={(e) => handleChange(e)}
+                ></input>
+              </label>
 
-          <label className="text-lg pb-1  text-slate-600">
-            Product:
-            <input
-              className="rounded-md ml-1"
-              type="text"
-              name="name"
-              value={product.name}
-              onChange={(e) => handleChange(e)}
-            ></input>
-          </label>
+              <div className=" text-slate-600">
+                <p className="text-lg  text-slate-600">Type:</p>
+                <label>
+                  <input
+                    type="radio"
+                    name="type"
+                    value={"fruits"}
+                    checked={product.type === "fruits"}
+                    onChange={(e) => handleRadio(e)}
+                  />
+                  Fruits
+                </label>
+              </div>
+              <div className=" text-slate-600">
+                <label>
+                  <input
+                    type="radio"
+                    name="type"
+                    value={"vegetables"}
+                    checked={product.type === "vegetables"}
+                    onChange={(e) => handleRadio(e)}
+                  />
+                  Vegetable
+                </label>
+              </div>
+              <div className=" text-slate-600">
+                <label>
+                  <input
+                    type="radio"
+                    name="type"
+                    value={"meat"}
+                    checked={product.type === "meat"}
+                    onChange={(e) => handleRadio(e)}
+                  />
+                  Meat
+                </label>
+              </div>
+              <div className=" text-slate-600">
+                <label>
+                  <input
+                    type="radio"
+                    name="type"
+                    value={"other"}
+                    checked={product.type === "other"}
+                    onChange={(e) => handleRadio(e)}
+                  />
+                  Other
+                </label>
+              </div>
 
-          <div className=" text-slate-600">
-            <p className="text-lg  text-slate-600">Type:</p>
-            <label>
-              <input
-                type="radio"
-                name="type"
-                value={"fruits"}
-                checked={product.type === "fruits"}
-                onChange={(e) => handleRadio(e)}
-              />
-              Fruits
-            </label>
-          </div>
-          <div className=" text-slate-600">
-            <label>
-              <input
-                type="radio"
-                name="type"
-                value={"vegetables"}
-                checked={product.type === "vegetables"}
-                onChange={(e) => handleRadio(e)}
-              />
-              Vegetable
-            </label>
-          </div>
-          <div className=" text-slate-600">
-            <label>
-              <input
-                type="radio"
-                name="type"
-                value={"meat"}
-                checked={product.type === "meat"}
-                onChange={(e) => handleRadio(e)}
-              />
-              Meat
-            </label>
-          </div>
-          <div className=" text-slate-600">
-            <label>
-              <input
-                type="radio"
-                name="type"
-                value={"other"}
-                checked={product.type === "other"}
-                onChange={(e) => handleRadio(e)}
-              />
-              Other
-            </label>
-          </div>
+              <div className=" text-slate-600 mt-3">
+                <label>
+                  <input type="file" onChange={handleImage}></input>
+                </label>
+              </div>
 
-          <label className="flex flex-col text-start text-lg pt-3 pb-1  text-slate-600">
-            Description:
-            <textarea
-              className=" h-24 mb-4 w-80 textarea bg-opacity-25 textarea-bordered"
-              type="text"
-              name="description"
-              value={product.description}
-              placeholder="Provide the condition of food you have if sharing and what days/times you are avilable for pick-up/drop-off"
-              onChange={(e) => handleChange(e)}
-            ></textarea>
-          </label>
+              <div className="col">
+                {image && <img src={image} style={{ width: "100px" }} />}
+              </div>
 
-          <label className="text-lg pb-3 text-slate-600">
-            Amount:
-            <input
-              className="rounded-md ml-1"
-              type="number"
-              name="amount"
-              value={product.amount}
-              onChange={(e) => handleChange(e)}
-            ></input>
-          </label>
+              <label className="flex flex-col text-start text-lg pt-3 pb-1  text-slate-600">
+                Description:
+                <textarea
+                  className=" h-24 mb-4 w-80 textarea bg-opacity-25 textarea-bordered"
+                  type="text"
+                  name="description"
+                  value={product.description}
+                  placeholder="Provide the condition of food you have if sharing and what days/times you are avilable for pick-up/drop-off"
+                  onChange={(e) => handleChange(e)}
+                ></textarea>
+              </label>
 
-          <label className="text-lg pb-3  text-slate-600">
-            Phone number:
-            <input
-              className="rounded-md ml-1"
-              type="text"
-              name="phone_number"
-              value={product.phone_number}
-              onChange={(e) => handleChange(e)}
-            ></input>
-          </label>
+              <label className="text-lg pb-3 text-slate-600">
+                Amount:
+                <input
+                  className="rounded-md ml-1"
+                  type="number"
+                  name="amount"
+                  value={product.amount}
+                  onChange={(e) => handleChange(e)}
+                ></input>
+              </label>
 
-          <label className="text-lg pb-3  text-slate-600">
-            Zip Code:
-            <input
-              className="rounded-md ml-1"
-              type="text"
-              name="zip_code"
-              value={product.zip_code}
-              onChange={(e) => handleChange(e)}
-            ></input>
-          </label>
+              <label className="text-lg pb-3  text-slate-600">
+                Phone number:
+                <input
+                  className="rounded-md ml-1"
+                  type="text"
+                  name="phone_number"
+                  value={product.phone_number}
+                  onChange={(e) => handleChange(e)}
+                ></input>
+              </label>
 
-          <p className="text-base pb-3  text-slate-600">
-            Is this something you need or is it to share?
-          </p>
-          <div className=" text-slate-600">
-            <label>
-              <input
-                type="radio"
-                name="needed"
-                value={"true"}
-                checked={product.needed === "true"}
-                onChange={(e) => handleTruefalse(e)}
-              />
-              Need
-            </label>
-          </div>
-          <div className=" text-slate-600">
-            <label>
-              <input
-                type="radio"
-                name="needed"
-                value={"false"}
-                checked={product.needed === "false"}
-                onChange={(e) => handleTruefalse(e)}
-              />
-              Share
-            </label>
-          </div>
-        </div>
-        <div className="flex justify-start ml-8">
-          <button type="submit" className="btn2 w-20">
-            Submit
-          </button>
-        </div>
-      </form> 
-     
+              <label className="text-lg pb-3  text-slate-600">
+                Zip Code:
+                <input
+                  className="rounded-md ml-1"
+                  type="text"
+                  name="zip_code"
+                  value={product.zip_code}
+                  onChange={(e) => handleChange(e)}
+                ></input>
+              </label>
 
-      <GridButtons /> 
-      </>)}
-    </div> 
+              <p className="text-base pb-3  text-slate-600">
+                Is this something you need or is it to share?
+              </p>
+              <div className=" text-slate-600">
+                <label>
+                  <input
+                    type="radio"
+                    name="needed"
+                    value={"true"}
+                    checked={product.needed === "true"}
+                    onChange={(e) => handleTruefalse(e)}
+                  />
+                  Need
+                </label>
+              </div>
+              <div className=" text-slate-600">
+                <label>
+                  <input
+                    type="radio"
+                    name="needed"
+                    value={"false"}
+                    checked={product.needed === "false"}
+                    onChange={(e) => handleTruefalse(e)}
+                  />
+                  Share
+                </label>
+              </div>
+            </div>
+            <div className="flex justify-start ml-8">
+              <button type="submit" className="btn2 w-20">
+                Submit
+              </button>
+            </div>
+          </form>
+
+          <GridButtons />
+        </>
+      )}
+    </div>
   );
 };
 

@@ -1,6 +1,7 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
+
 
 //function to return all todo items
 const getProducts = async () => {
@@ -11,50 +12,50 @@ const getProducts = async () => {
 
 //send bakc full list of items
 router.get("/", async (req, res) => {
+  const name = req.query.name;
+  const zipCode = req.query.zip_code;
+  const needed = req.query.needed;
 
-   const name = req.query.name
-   const zipCode = req.query.zip_code
-   const needed = req.query.needed
-
-   console.log(name)
+  console.log(name);
 
   //products is like %product info%
-if (name && needed === 'false') {
-  try {
-    const response = await db(`SELECT * FROM products WHERE needed = false AND name LIKE '%${name}%';`);
-    const product = response.data;
+  if (name && needed === "false") {
+    try {
+      const response = await db(
+        `SELECT * FROM products WHERE needed = false AND name LIKE '%${name}%';`
+      );
+      const product = response.data;
 
-    if (!product) {
-      res.status(404).send();
-      return;
+      if (!product) {
+        res.status(404).send();
+        return;
+      }
+      res.status(200).send({ product });
+    } catch (error) {
+      res.status(500).send(error);
     }
-    res.status(200).send({ product });
-  } catch (error) {
-    res.status(500).send(error);
-  
   }
-}
 
-  //zip code === zip code 
-  
+  //zip code === zip code
   else if (zipCode) {
-   try {
-    const response = await db(`SELECT * FROM products WHERE zip_code = ${zipCode};`);
-    const product = response.data;
+    try {
+      const response = await db(
+        `SELECT * FROM products WHERE zip_code = ${zipCode};`
+      );
+      const product = response.data;
 
-    if (!product) {
-      res.status(404).send();
-      return;
+      if (!product) {
+        res.status(404).send();
+        return;
+      }
+      res.status(200).send({ product });
+    } catch (error) {
+      res.status(500).send(error);
     }
-    res.status(200).send({ product });
-  } catch (error) {
-    res.status(500).send(error);
-  
-  }}
+  }
 
-
-  //return needed === true 
-  else if (req.query.needed === 'true') {
+  //return needed === true
+  else if (req.query.needed === "true") {
     try {
       const products = await db(`SELECT * FROM products WHERE needed = true;`);
 
@@ -63,7 +64,7 @@ if (name && needed === 'false') {
       res.status(500).send(error);
     }
     //return needed === false return gving away items
-  } else if (req.query.needed === 'false') {
+  } else if (req.query.needed === "false") {
     try {
       const products = await db("SELECT * FROM products WHERE needed = false;");
       res.status(200).send({ products });
@@ -71,16 +72,15 @@ if (name && needed === 'false') {
       res.status(500).send(error);
     }
   } else {
-
-  //check if console.log(req.query.needed) is undefined, you need to get all products
- try {
-    const products = await getProducts();
-    res.status(200).send({ products });
-  } catch (error) {
-    res.status(500).send(error);
+    //check if console.log(req.query.needed) is undefined, you need to get all products
+    try {
+      const products = await getProducts();
+      res.status(200).send({ products });
+    } catch (error) {
+      res.status(500).send(error);
+    }
   }
-  
-}});
+});
 
 router.get("/:id", async (req, res) => {
   const id = Number(req.params.id);
@@ -107,8 +107,8 @@ router.post("/", async (req, res) => {
   const amount = req.body.amount;
   const phone_number = req.body.phone_number;
   const zip_code = req.body.zip_code;
-  const needed = req.body.needed; 
-  console.log(req.body)
+  const needed = req.body.needed;
+  console.log(req.body);
 
   try {
     await db(
@@ -123,7 +123,6 @@ router.post("/", async (req, res) => {
     res.status(500).send(error);
   }
 });
-
 
 router.delete("/:id", async (req, res) => {
   const id = Number(req.params.id);
@@ -145,8 +144,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-
-//patch request 
+//patch request
 router.patch("/:id", async (req, res) => {
   const id = Number(req.params.id);
   const firstname = req.body.firstname;
@@ -162,17 +160,16 @@ router.patch("/:id", async (req, res) => {
     const response = await db(`SELECT * FROM products WHERE id = ${id}`);
     const product = response.data[0];
 
-
     if (!product) {
       res.status(404).send();
       return;
     }
-    const newProduct = {...product,...req.body}
+    const newProduct = { ...product, ...req.body };
 
     await db(
       `UPDATE products SET firstname = '${newProduct.firstname}', name = '${newProduct.name}', type = '${newProduct.type}', 
       description = '${newProduct.description}', amount = ${newProduct.amount}, phone_number = '${newProduct.phone_number}',
-       zip_code = '${newProduct.zip_code}', needed = ${newProduct.needed} WHERE id = ${newProduct.id}`  /*    phone_number = '${phone_number}' zip_code = '${zip_code}', needed = ${needed} */
+       zip_code = '${newProduct.zip_code}', needed = ${newProduct.needed} WHERE id = ${newProduct.id}` /*    phone_number = '${phone_number}' zip_code = '${zip_code}', needed = ${needed} */
     );
 
     res.send(200);
@@ -180,7 +177,5 @@ router.patch("/:id", async (req, res) => {
     res.status(500).send(error);
   }
 });
-
-
 
 module.exports = router;
