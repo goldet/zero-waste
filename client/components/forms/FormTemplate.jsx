@@ -14,6 +14,8 @@ const FormTemplate = () => {
     phone_number: "",
     zip_code: "",
     needed: false,
+    image: null
+    
   });
 
   const [image, setImage] = useState(null);
@@ -39,24 +41,7 @@ const FormTemplate = () => {
     setProduct((product) => ({ ...product, [name]: value }));
   };
 
-  /* const handleImage = (e) => {
-    setImage((e.target.files[0])) */
-  /*   const file = e.target.files[0];
-    setImageInput(file);
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImage(reader.result);
-      // Upload the image to the server
-      axios
-        .post("http://localhost:3000/upload", { image: file })
-        .then((response) => {
-          console.log("Image uploaded successfully", response.data);
-        })
-        .catch((error) => {
-          console.error("Error uploading image")}
-  
-   
-        )}} */
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -69,9 +54,24 @@ const FormTemplate = () => {
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
+      axios.post(`${BASE_URL}/products`, {
+      firstname: formData.firstname,
+      name: formData.name,
+      type: formData.type,
+      description: formData.description,
+      amount: formData.amount,
+      phone_number: formData.phone_number,
+      zip_code: formData.zip_code,
+      needed: formData.needed,
+      imagePath: imagePath,
+    })
+  
+   
     } catch (error) {
       console.log(error);
     }
+
+    const { firstname, name, type, description, amount, phone_number, zip_code, needed, image } = formData;
 
     createProduct(product);
   };
@@ -285,6 +285,8 @@ const FormTemplate = () => {
           </form>
 
           <GridButtons />
+
+          
         </>
       )}
     </div>
