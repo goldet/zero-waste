@@ -60,7 +60,7 @@ const FormTemplate = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
+   /*  const formData = new FormData();
     formData.append("image", image);
     try {
       const response = await axios({
@@ -71,7 +71,7 @@ const FormTemplate = () => {
       });
     } catch (error) {
       console.log(error);
-    }
+    } */
 
     createProduct(product);
   };
@@ -89,6 +89,16 @@ const FormTemplate = () => {
         },
         body: JSON.stringify(product),
       });
+      const id = await response.json();
+      const formData = new FormData();
+      formData.append('image', image);
+      formData.append('id', id);
+      await fetch(`${BASE_URL}/images/single`, {
+        method: 'POST',
+        headers: { "Content-Type": "multipart/form-data" },
+        body: formData,
+      });
+  
       setSuccess(true);
 
       function sleep(ms) {

@@ -8,22 +8,21 @@ const Card = ({ product, deleteProduct }) => {
           }}
           className="container card w-80 h-96 justify-center text-start bg-base-100 shadow-xl mb-6 card-body text-black "
         >
-          {" "}
           <div className="card-actions justify-end">
             <button
               className="deleteBtn btn2 h-10 w-10 bg-none "
               onClick={() => deleteProduct(product.id)}
             >
-              {" "}
               <span role="img" aria-label="delete button">
                 ✖️
               </span>
             </button>
           </div>
-          <h1 className="card-title">Product: {product.name}</h1> <br /> Type:{" "}
-          {product.type} <br /> Description: <br /> {product.description} <br />{" "}
-          Amount: {product.amount} <br /> Contact {product.firstname}:{" "}
-          {product.phone_number} <br />{" "}
+          <h1 className="card-title">Product: {product.name}</h1> <br /> Type:
+          {product.type} <br /> Description: <br /> {product.description} <br />
+          {/* {product.image_path} */}
+          Amount: {product.amount} <br /> Contact {product.firstname}:
+          {product.phone_number} <br />
           <div className="">Zip code: {product.zip_code} </div>
         </div>
       </span>
