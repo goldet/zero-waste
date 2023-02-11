@@ -124,6 +124,8 @@ router.post("/", async (req, res) => {
   }
 });
 
+
+
 router.delete("/:id", async (req, res) => {
   const id = Number(req.params.id);
 

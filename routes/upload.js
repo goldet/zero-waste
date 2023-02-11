@@ -36,12 +36,39 @@ const checkFileType = function (file, cb) {
   }
 };
 
-router.post("/single", upload.single("image"), (req, res) => {
-  const data = req.body;
+router.post("/:id/single", upload.single("image"), (req, res) => {     // /:id (add idea before single)
+/*   const data = req.body;
   const imagePath = req.file.path;
+  const id = Number(req.params.id); */
+  //const id = Number(req.params.id);
+
+  
+  const id = req.body.id;
+  const image = req.files.image;
+  const imagePath = `/images/${id}.${image.mimetype.split('/')[1]}`;
 
 // Store the data and imagePath in your database
+
+//UPDATE with ID 
+/*  `UPDATE products SET image_path = '${imagePath}' WHERE id = ${id};`
+ */
+fs.writeFile(`./public${imagePath}`, image.data, (error) => {
+  if (error) throw error;
+  connection.query(
+    'UPDATE products SET image_path = ? WHERE id = ?',
+    [imagePath, id],
+    (error) => {
+      if (error) throw error;
+      res.json({ message: 'Image saved and path added to the database successfully' });
+    }
+  );
+});
+
+
+
 res.send({
+
+
   status: "success",
   message: "Image and data uploaded successfully",
   data: data,
@@ -54,6 +81,7 @@ res.send({
     res.status(400).send("Please upload a valid image");
   }
 });
+
 
 module.exports = router;
 //create product try to return product created in backend 
