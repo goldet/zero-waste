@@ -1,6 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 var router = express.Router();
+const db = require("../model/helper");
 
 //Setting storage engine
 const storageEngine = multer.diskStorage({
@@ -36,27 +37,36 @@ const checkFileType = function (file, cb) {
   }
 };
 
-router.post("/single", upload.single("image"), (req, res) => {
+router.post("/:id/single", upload.single("image"), async (req, res) => {
   const data = req.body;
-  const imagePath = req.file.path;
+  const imagePath = req.file.filename;
 
-// Store the data and imagePath in your database
-res.send({
-  status: "success",
-  message: "Image and data uploaded successfully",
-  data: data,
-  imagePath: imagePath
-});
+  const id = Number(req.params.id);
+ 
 
-  if (req.file) {
+  await db(`UPDATE products SET image_path = '${imagePath}' WHERE id = ${id};`);
+
+
+  console.log(id)
+  console.log(req.file)
+
+  // Store the data and imagePath in your database
+  res.send({
+    status: "success",
+    message: "Image and data uploaded successfully",
+    data: data,
+    imagePath: imagePath,
+  });
+
+  /* if (req.file) {
     res.send("Single file uploaded successfully");
   } else {
     res.status(400).send("Please upload a valid image");
-  }
+  } */
 });
 
 module.exports = router;
-//create product try to return product created in backend 
-//upload image 
+//create product try to return product created in backend
+//upload image
 //when you do post request you need to provide id of products
-//after uploading image with id you update the database with the url of the image with the server 
+//after uploading image with id you update the database with the url of the image with the server

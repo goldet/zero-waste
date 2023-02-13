@@ -2,21 +2,17 @@ var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
 
-
 //function to return all todo items
 const getProducts = async () => {
   const results = await db("SELECT * FROM products ORDER BY id ASC;");
   return results.data;
 };
 
-
 //send bakc full list of items
 router.get("/", async (req, res) => {
   const name = req.query.name;
   const zipCode = req.query.zip_code;
   const needed = req.query.needed;
-
-  console.log(name);
 
   //products is like %product info%
   if (name && needed === "false") {
@@ -108,17 +104,19 @@ router.post("/", async (req, res) => {
   const phone_number = req.body.phone_number;
   const zip_code = req.body.zip_code;
   const needed = req.body.needed;
-  console.log(req.body);
 
   try {
-    await db(
-      `INSERT INTO products (firstname, name, type, description, amount, phone_number, zip_code, needed) values ('${firstname}', '${name}', '${type}', '${description}', ${amount}, '${phone_number}', '${zip_code}', ${needed})`
+    const response = await db(
+      `INSERT INTO products (firstname, name, type, description, amount, phone_number, zip_code, needed) values ('${firstname}', '${name}', '${type}', '${description}', ${amount}, '${phone_number}', '${zip_code}', ${needed}); SELECT LAST_INSERT_ID()`
     );
 
-    //const results = await db("SELECT * FROM items ORDER BY id ASC;")
+    //const response =  await db(`SELECT * FROM products WHERE  description ='${description}'`);
+
     const products = await getProducts();
 
-    res.status(201).send({ products });
+    const insertId = response.data[0].insertId;
+
+    res.status(201).send({ products, insertId });
   } catch (error) {
     res.status(500).send(error);
   }

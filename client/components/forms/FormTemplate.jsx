@@ -14,6 +14,7 @@ const FormTemplate = () => {
     phone_number: "",
     zip_code: "",
     needed: false,
+    image_path: null,
   });
 
   const [image, setImage] = useState(null);
@@ -39,64 +40,50 @@ const FormTemplate = () => {
     setProduct((product) => ({ ...product, [name]: value }));
   };
 
-  /* const handleImage = (e) => {
-    setImage((e.target.files[0])) */
-  /*   const file = e.target.files[0];
-    setImageInput(file);
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImage(reader.result);
-      // Upload the image to the server
-      axios
-        .post("http://localhost:3000/upload", { image: file })
-        .then((response) => {
-          console.log("Image uploaded successfully", response.data);
-        })
-        .catch((error) => {
-          console.error("Error uploading image")}
-  
-   
-        )}} */
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("image", image);
+    const productResponse = await createProduct(product);
+    
+
     try {
-      const response = await axios({
+      await axios({
         method: "post",
-        url: `${BASE_URL}/images/single`,
+        url: `${BASE_URL}/images/${productResponse.insertId}/single`,
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
     } catch (error) {
       console.log(error);
     }
-
-    createProduct(product);
   };
 
   const handleImage = (e) => {
     setImage(e.target.files[0]);
+    console.log(e.target.files);
   };
 
   const createProduct = async (product) => {
     try {
-      await fetch(`${BASE_URL}/products`, {
+      let productResponse = await fetch(`${BASE_URL}/products`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(product),
       });
+      productResponse = await productResponse.json();
+      
       setSuccess(true);
+    
 
       function sleep(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));
       }
       await sleep(3000);
       setSuccess(false);
-
+      return productResponse;
       /*      window.location.reload(); */
     } catch (error) {
       setError("Something went wrong! Please try again later.");
@@ -200,9 +187,10 @@ const FormTemplate = () => {
                 </label>
               </div>
 
-              <div className="col">
+              {/* fix this later */}
+              {/*  <div className="col">
                 {image && <img src={image} style={{ width: "100px" }} />}
-              </div>
+              </div> */}
 
               <label className="flex flex-col text-start text-lg pt-3 pb-1  text-slate-600">
                 Description:
