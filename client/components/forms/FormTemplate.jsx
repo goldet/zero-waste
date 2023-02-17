@@ -59,6 +59,7 @@ const FormTemplate = () => {
     }
   };
 
+    //saves the file name to state 
   const handleImage = (e) => {
     setImage(e.target.files[0]);
     console.log(e.target.files);
@@ -100,6 +101,14 @@ const FormTemplate = () => {
       });
     }
   };
+
+    // Show error & loading states
+   /*  let state = <></>;
+    if (error) {
+      state = <>{error}</>;
+    } else if (loading) {
+      state = <>Loading...</>;
+    } */
 
   return (
     <div>

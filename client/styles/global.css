@@ -1,18 +1,110 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
-
-/* * {
-  font-family: "Questrial", sans-serif;
-} */
+@tailwind utilities; */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
 
 body {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f2f7f5;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* body {
   padding: 0px;
   margin: 0;
+} */
+
+h1 {
+  font-size: 40px;
+  line-height: 44px;
+  padding-bottom: 20px;
+}
+
+h2 {
+  font-size: 34px;
+  line-height: 36px;
+  font-weight: 800;
+  padding-bottom: 30px;
+}
+
+h3 {
+  background-color: #015b42;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 700;
+  padding-top: 10px;
+}
+
+h4 {
+  font-weight: 400;
+  padding-bottom: 20px;
 }
 
 
+p {
+  padding: 10px 0px;
+}
 
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+
+.header {
+  background-color: rgb(29,77,78);
+  padding: 10px 15px;
+  color: white;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  align-self: center;
+}
+
+
+.hero-img {
+  width: 250px;
+  height: auto;  
+}
+
+.hero {
+  background-color: white;
+  color:black;
+  padding: 30px 15px 30px 15px;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column-reverse;
+  text-align: center;
+  gap: 30px;
+}
+
+.container {
+  width: 100%;
+  margin: auto;
+}
 
 /* .navbarContainer {
   background-color: rgb(191, 243, 200, 0.6);
