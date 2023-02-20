@@ -4,23 +4,20 @@ import Link from "next/link";
 export default function Homepage() {
   return (
     <>
-     <div className="hero min-h-screen" style={{ backgroundImage: `url("https://plus.unsplash.com/premium_photo-1663090106056-bbb60d2be552?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80")` }}>
-     <div className="hero-overlay bg-opacity-60"></div>
-     <div className="hero-content text-center text-neutral-content">
-     <div className="max-w-md">
-      <h1 className="mb-5 text-5xl font-bold text-white"> Why Zero Waste? </h1>
+   <div className="hero min-h-screen bg-base-200">
+  <div className="heroContainer gap-12 hero-content flex-col lg:flex-row-reverse">
+    <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" className="image md:max-w-xs rounded-lg shadow-2xl" />
+    <div>
+      <h1 className="text-center md:text-start lg:text-start text-5xl font-bold"> Why Zero Waste? </h1>
 
-      <p className="mb-5">
-        Our mission is to promote community engagement and reduce waste! If you
-        have extra food at home that you&#39;re afraid you won&#39;t use or will go bad,
-        share it and it will be posted to the food to share page. If there&#39;s
-        something you need, ask for it and it will be shared to the food needs
-        page.
+      <p className="text-center md:text-start lg:text-start py-6">
+        Our mission is to promote community engagement, reduce food waste, and eat well! <br/> You can use this app to share food or post what you need!
       </p>
 
-      <div className="btn2 w-36 tracking-wide text-lg m-auto flex justify-center text-center"> {/* tracking wider? not working... */}
-      <Link className="tracking-wider btn-glass text-xl" href="/forms/share">Start Sharing!</Link>
+      <div className="flex md:flex-none lg:flex-none"> 
+      <Link className="justify-center button items-center tracking-wider btn text-xl" href="/forms/share">Start Sharing!</Link>
       </div>
+      
 </div>
 </div>
 </div>
