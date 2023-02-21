@@ -80,8 +80,7 @@ const FoodNeeds = () => {
                 product={product}
                 deleteProduct={deleteProduct}
               />
-              /* openProductDetail={openProductDetail} */
-              /* onClick={openProductDetail} */
+             
             ))}
         </div>
         <div className="parentContainer gap-10">
