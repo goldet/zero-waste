@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FiSearch } from "react-icons/fi";
 
 const BASE_URL = "http://localhost:5000";
 
@@ -8,72 +9,62 @@ const SearchBarNew = ({ addZipCode, addProductName }) => {
 
   const handleChange = (e) => {
     setSearchInput(e.target.value);
-
   };
   const handleSubmit = (event) => {
     event.preventDefault();
     addZipCode(searchInput);
-    setSearchInput("")
+    setSearchInput("");
   };
 
   const handleOnChange = (event) => {
     setSearchInputProduct(event.target.value);
-
   };
   const handleOnSubmit = (ev) => {
     ev.preventDefault();
     addProductName(searchInputProduct);
-    setSearchInputProduct("")
+    setSearchInputProduct("");
   };
 
   return (
     <>
-    
-    <div className=" pl-12  items-center flex flex-col">
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div className="form-control w-full max-w-xs">
-          <label className="label-text">
-            Search a location:
+      <div className="form-control-search">
+       
+      
+        <form onSubmit={(e) => handleSubmit(e)}>
+  
+          <label className="label-text relative">
             <input
-              className="input input-bordered w-full max-w-xs mt-2 items-center h-6"
+              className="searchbar-input" 
               type="text"
-              placeholder="zip code"
+              placeholder="search a zip code"
               onChange={(e) => handleChange(e)}
               value={searchInput}
             />
+            <button type="submit" className="absolute left-2 top-10">
+              <FiSearch />
+            </button>
           </label>
-        </div>
-        <button type="submit" className="btn btn-outline btn-xs my-2">
-          Search
-        </button>{" "}
-       
-      </form>
-
-{/* by product */}
-      <form onSubmit={(ev) => handleOnSubmit(ev)}>
-        <div className="">
-        <div className="form-control w-full max-w-xs">
-          <label className="label-text">
-            Search a product:
-            <input
-              className="input input-bordered w-full max-w-xs mt-2 items-center h-6"
-              type="text"
-              placeholder="food item"
-              onChange={(event) => handleOnChange(event)}
-              value={searchInputProduct}
-            />
-          </label>
-        </div>
-        <button type="submit" className="btn btn-outline btn-xs my-2">
-          Search
-        </button>{" "}
-        </div>
-      </form>
+         
+        </form>
+        
+        {/* by product */}
+        <form onSubmit={(ev) => handleOnSubmit(ev)}>
+          
+            <label className="label-text relative">
+              <input
+                className="searchbar-input"
+                type="text"
+                placeholder="search a food item"
+                onChange={(event) => handleOnChange(event)}
+                value={searchInputProduct}
+              />
+              <button type="submit" className="absolute left-2 top-10">
+                <FiSearch />
+              </button>
+            </label>
+          
+        </form>
       </div>
-
-      
-   
-    
     </>
   );
 };

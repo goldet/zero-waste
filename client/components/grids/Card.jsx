@@ -1,34 +1,38 @@
+import Link from 'next/link';
+
+
 const Card = ({ product, deleteProduct }) => {
 
-  console.log(product.image_path)
+
+ 
   return (
-    <div className="" key={product.id}>
-      <span>
-        <div
-          style={{
-            backgroundImage: `url("https://images.unsplash.com/photo-1454944338482-a69bb95894af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Ymxha2MlMjBhbmQlMjB3aGl0ZSUyMGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")`,
-          }}
-          className="container card w-80 h-96 justify-center text-start bg-base-100 shadow-xl mb-6 card-body text-black "
-        >
-          {" "}
+    <div key={product.id}>
+ 
+    
+        <div className="card card-compact w-80 bg-base-100 shadow-xl"> 
+    
+       <Link href={`/productdetail/${product.id}`}> <figure className="overflow-hidden w-full h-48"> {product.image_path === null ? (<img className="w-full h-auto" src={`https://images.unsplash.com/photo-1446611720526-39d16597055c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80`}/>) : (<img  className="w-full h-auto"  src={`http://localhost:5000/images/${product.image_path}`} alt={`photo of ${product.name}`}/>)} </figure> </Link> 
           <div className="card-actions justify-end">
+    
             <button
-              className="deleteBtn btn2 h-10 w-10 bg-none "
+              className="deleteBtn h-10 w-10 bg-none"
               onClick={() => deleteProduct(product.id)}
             >
-              {" "}
               <span role="img" aria-label="delete button">
                 ✖️
               </span>
             </button>
           </div>
-          <h1 className="card-title">Product: {product.name}</h1> <br /> Type:{" "}
-          {product.type} <br /> Description: <br /> {product.description} <br /> {product.image_path === null ? (<img src={`https://images.unsplash.com/photo-1446611720526-39d16597055c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80`}/>) : (<img src={`http://localhost:5000/images/${product.image_path}`}/>)}
-          Amount: {product.amount} <br /> Contact {product.firstname}:{" "}
-          {product.phone_number} <br />{" "}
-          <div className="">Zip code: {product.zip_code} </div>
+        <div className="card-body text-black text-start">
+          <h1 className="card-title text-black">Product: {product.name}</h1> <br /> 
+          {product.type} <br /> Description: <br /> {product.description} <br /> 
+          Amount: {product.amount} <br /> Contact {product.firstname}:
+          {product.phone_number} <br />
+          <div className="">Zip code: {product.zip_code}</div>
+          </div>
+          {/* </Link> */}
         </div>
-      </span>
+        
     </div>
   );
 };

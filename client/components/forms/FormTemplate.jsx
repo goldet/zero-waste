@@ -45,7 +45,6 @@ const FormTemplate = () => {
     const formData = new FormData();
     formData.append("image", image);
     const productResponse = await createProduct(product);
-    
 
     try {
       await axios({
@@ -61,7 +60,8 @@ const FormTemplate = () => {
 
   const handleImage = (e) => {
     setImage(e.target.files[0]);
-    console.log(e.target.files);
+    console.log(e.target.files[0].name);
+    console.log(image)
   };
 
   const createProduct = async (product) => {
@@ -74,9 +74,8 @@ const FormTemplate = () => {
         body: JSON.stringify(product),
       });
       productResponse = await productResponse.json();
-      
+
       setSuccess(true);
-    
 
       function sleep(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));
@@ -84,7 +83,6 @@ const FormTemplate = () => {
       await sleep(3000);
       setSuccess(false);
       return productResponse;
-      /*      window.location.reload(); */
     } catch (error) {
       setError("Something went wrong! Please try again later.");
     } finally {
@@ -106,10 +104,10 @@ const FormTemplate = () => {
       {success ? (
         <SuccessAlert />
       ) : (
-        <>
+        <div className="form-control">
           <form onSubmit={(e) => handleSubmit(e)} className="form-control">
-            <div className="flex flex-col items-start p-10">
-              <label className="text-lg pb-3  text-slate-600">
+            <div className="">
+              <label>
                 Your name:
                 <input
                   className="rounded-md ml-1"
@@ -120,10 +118,9 @@ const FormTemplate = () => {
                 ></input>
               </label>
 
-              <label className="text-lg pb-1  text-slate-600">
+              <label>
                 Product:
                 <input
-                  className="rounded-md ml-1"
                   type="text"
                   name="name"
                   value={product.name}
@@ -131,8 +128,7 @@ const FormTemplate = () => {
                 ></input>
               </label>
 
-              <div className=" text-slate-600">
-                <p className="text-lg  text-slate-600">Type:</p>
+              <div className="radio-container">
                 <label>
                   <input
                     type="radio"
@@ -143,8 +139,7 @@ const FormTemplate = () => {
                   />
                   Fruits
                 </label>
-              </div>
-              <div className=" text-slate-600">
+
                 <label>
                   <input
                     type="radio"
@@ -155,8 +150,7 @@ const FormTemplate = () => {
                   />
                   Vegetable
                 </label>
-              </div>
-              <div className=" text-slate-600">
+
                 <label>
                   <input
                     type="radio"
@@ -167,8 +161,7 @@ const FormTemplate = () => {
                   />
                   Meat
                 </label>
-              </div>
-              <div className=" text-slate-600">
+
                 <label>
                   <input
                     type="radio"
@@ -181,30 +174,29 @@ const FormTemplate = () => {
                 </label>
               </div>
 
-              <div className=" text-slate-600 mt-3">
-                <label>
-                  <input type="file" onChange={handleImage}></input>
-                </label>
-              </div>
+              <label>
+                <input type="file" onChange={handleImage}></input>
+              </label>
 
               {/* fix this later */}
-              {/*  <div className="col">
+             {/*   <div className="col">
                 {image && <img src={image} style={{ width: "100px" }} />}
-              </div> */}
+              </div>
+ */}
 
-              <label className="flex flex-col text-start text-lg pt-3 pb-1  text-slate-600">
+
+              <label>
                 Description:
-                <textarea
-                  className=" h-24 mb-4 w-80 textarea bg-opacity-25 textarea-bordered"
+                <input
                   type="text"
                   name="description"
                   value={product.description}
-                  placeholder="Provide the condition of food you have if sharing and what days/times you are avilable for pick-up/drop-off"
+                  placeholder="quality and expiration date"
                   onChange={(e) => handleChange(e)}
-                ></textarea>
+                ></input>
               </label>
 
-              <label className="text-lg pb-3 text-slate-600">
+              <label>
                 Amount:
                 <input
                   className="rounded-md ml-1"
@@ -215,10 +207,9 @@ const FormTemplate = () => {
                 ></input>
               </label>
 
-              <label className="text-lg pb-3  text-slate-600">
+              <label>
                 Phone number:
                 <input
-                  className="rounded-md ml-1"
                   type="text"
                   name="phone_number"
                   value={product.phone_number}
@@ -226,10 +217,9 @@ const FormTemplate = () => {
                 ></input>
               </label>
 
-              <label className="text-lg pb-3  text-slate-600">
+              <label>
                 Zip Code:
                 <input
-                  className="rounded-md ml-1"
                   type="text"
                   name="zip_code"
                   value={product.zip_code}
@@ -237,10 +227,8 @@ const FormTemplate = () => {
                 ></input>
               </label>
 
-              <p className="text-base pb-3  text-slate-600">
-                Is this something you need or is it to share?
-              </p>
-              <div className=" text-slate-600">
+              <p className="pb-8">Is this something you need or is it to share?</p>
+              <div className="radio-container">
                 <label>
                   <input
                     type="radio"
@@ -251,8 +239,7 @@ const FormTemplate = () => {
                   />
                   Need
                 </label>
-              </div>
-              <div className=" text-slate-600">
+
                 <label>
                   <input
                     type="radio"
@@ -265,15 +252,14 @@ const FormTemplate = () => {
                 </label>
               </div>
             </div>
-            <div className="flex justify-start ml-8">
-              <button type="submit" className="btn2 w-20">
+            <div className="mb-8">
+              <button type="submit" className="button btn tracking-wider text-lg">
                 Submit
               </button>
-            </div>
+              </div>
+              <GridButtons />
           </form>
-
-          <GridButtons />
-        </>
+        </div>
       )}
     </div>
   );

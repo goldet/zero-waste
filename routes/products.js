@@ -8,13 +8,13 @@ const getProducts = async () => {
   return results.data;
 };
 
-//send bakc full list of items
+//get list of products
 router.get("/", async (req, res) => {
   const name = req.query.name;
   const zipCode = req.query.zip_code;
   const needed = req.query.needed;
 
-  //products is like %product info%
+  //get product by name
   if (name && needed === "false") {
     try {
       const response = await db(
@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
     }
   }
 
-  //zip code === zip code
+  //get product by zip code
   else if (zipCode) {
     try {
       const response = await db(
@@ -50,7 +50,7 @@ router.get("/", async (req, res) => {
     }
   }
 
-  //return needed === true
+  //get products when product is needed
   else if (req.query.needed === "true") {
     try {
       const products = await db(`SELECT * FROM products WHERE needed = true;`);
@@ -59,7 +59,7 @@ router.get("/", async (req, res) => {
     } catch (error) {
       res.status(500).send(error);
     }
-    //return needed === false return gving away items
+    //get products when product is to be shared
   } else if (req.query.needed === "false") {
     try {
       const products = await db("SELECT * FROM products WHERE needed = false;");
@@ -68,7 +68,7 @@ router.get("/", async (req, res) => {
       res.status(500).send(error);
     }
   } else {
-    //check if console.log(req.query.needed) is undefined, you need to get all products
+    //check if needed is undefined, get all products
     try {
       const products = await getProducts();
       res.status(200).send({ products });
@@ -78,23 +78,25 @@ router.get("/", async (req, res) => {
   }
 });
 
+//Get a product by ID
 router.get("/:id", async (req, res) => {
   const id = Number(req.params.id);
 
   try {
-    const response = await db(`SELECT * FROM products WHERE id = ${id}`);
+    const response = await db(`SELECT * FROM products WHERE id = ${id};`);
     const product = response.data[0];
 
     if (!product) {
-      res.status(404).send();
+      res.status(404).send("Not found");
       return;
     }
-    res.status(200).send({ product });
+    res.status(200).send(response.data); /* {product} */
   } catch (error) {
     res.status(500).send(error);
   }
 });
 
+//post a new product and return it with id
 router.post("/", async (req, res) => {
   const firstname = req.body.firstname;
   const name = req.body.name;
@@ -110,8 +112,6 @@ router.post("/", async (req, res) => {
       `INSERT INTO products (firstname, name, type, description, amount, phone_number, zip_code, needed) values ('${firstname}', '${name}', '${type}', '${description}', ${amount}, '${phone_number}', '${zip_code}', ${needed}); SELECT LAST_INSERT_ID()`
     );
 
-    //const response =  await db(`SELECT * FROM products WHERE  description ='${description}'`);
-
     const products = await getProducts();
 
     const insertId = response.data[0].insertId;
@@ -122,6 +122,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+//delete product by id
 router.delete("/:id", async (req, res) => {
   const id = Number(req.params.id);
 
@@ -142,7 +143,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//patch request
+//patch request to edit product (not used yet)
 router.patch("/:id", async (req, res) => {
   const id = Number(req.params.id);
   const firstname = req.body.firstname;
