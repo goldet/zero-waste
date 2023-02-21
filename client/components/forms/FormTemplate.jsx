@@ -60,17 +60,8 @@ const FormTemplate = () => {
 
   const handleImage = (e) => {
     setImage(e.target.files[0]);
-    console.log(e.target.files);
-/*     const reader = new FileReader();
-
-    const imgtag = document.getElementById("myImage");
-    imgtag.title = selectedFile.name;
-  
-    reader.onload = function(event) {
-      imgtag.src = event.target.result;
-    };
-  
-    reader.readAsDataURL(selectedFile); */
+    console.log(e.target.files[0].name);
+    console.log(image)
   };
 
   const createProduct = async (product) => {
@@ -92,7 +83,6 @@ const FormTemplate = () => {
       await sleep(3000);
       setSuccess(false);
       return productResponse;
-      /*      window.location.reload(); */
     } catch (error) {
       setError("Something went wrong! Please try again later.");
     } finally {
@@ -191,8 +181,8 @@ const FormTemplate = () => {
               {/* fix this later */}
              {/*   <div className="col">
                 {image && <img src={image} style={{ width: "100px" }} />}
-              </div> */}
-
+              </div>
+ */}
 
 
               <label>

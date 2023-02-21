@@ -14,8 +14,8 @@ export default function Homepage() {
         Our mission is to promote community engagement, reduce food waste, and eat well! <br/> You can use this app to share food or post what you need!
       </p>
 
-      <div className="flex md:flex-none lg:flex-none"> 
-      <Link className="justify-center button items-center tracking-wider btn text-xl" href="/forms/share">Start Sharing!</Link>
+      <div className="flex justify-center md:justify-start  md:flex-none lg:justify-start  lg:flex-none"> 
+      <Link className="button items-center tracking-wider btn text-xl" href="/forms/share">Start Sharing!</Link>
       </div>
       
 </div>

@@ -32,6 +32,7 @@ const handleMenuClick = () => {
 
   return (
     <>
+   
     <div ref={ref} className="navbar text-primary-content flex justify-between shadow-xl"> {/* navbarContainer relative flex justify-between */}
       <h1 className="normal-case text-2xl">Zero Waste</h1>
      {/*  <Link to="/">
@@ -43,6 +44,7 @@ const handleMenuClick = () => {
       {mainMenu && <div className=""><MobileMenu /></div>}
       </div>
       </div>
+     
     </>
   );
 };
