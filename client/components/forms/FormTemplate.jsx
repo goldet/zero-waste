@@ -257,8 +257,12 @@ const FormTemplate = () => {
                 Submit
               </button>
               </div>
+            
+            {/* FIX STYLING HERE */}
               <GridButtons />
+              
           </form>
+         
         </div>
       )}
     </div>

@@ -4,9 +4,10 @@ import { FiArrowRight } from "react-icons/fi";
 const GridButtons = () => {
   return (
     <div>
-      <div className="dropdown dropdown-top w-12">
-        <label tabIndex={0} className="btn button flex  pt-4">
-          <FiArrowRight className="text-white "/>
+      <div className="dropdown dropdown-top w-36">
+        <label tabIndex={0} className="btn button flex">
+          Go Back
+          {/* <FiArrowRight className="text-white "/> */}
         </label>
         <ul
           tabIndex={0}
