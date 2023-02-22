@@ -63,6 +63,15 @@ body {
   border: none;
 }
 
+.back-link {
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 700;
+  color: #314f50;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .image {
   height: 60%;
   width: 60%;

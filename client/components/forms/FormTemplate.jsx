@@ -60,8 +60,6 @@ const FormTemplate = () => {
 
   const handleImage = (e) => {
     setImage(e.target.files[0]);
-    console.log(e.target.files[0].name);
-    console.log(image)
   };
 
   const createProduct = async (product) => {
