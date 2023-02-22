@@ -39,9 +39,10 @@ const ProductDetailInfo = () => {
       {product ? (
         <article className="main">
           <div className="container1">
-            {/*  {product.needed === true ? (<Link className="back-link" href="/grids/foodneeds">BACK</Link>) : (<Link className="back-link"  href="/grids/foodavailable">BACK</Link>)} */}
+            {/* FIX */}
+           {product.needed === 1? (<Link className="back-link" href="/grids/foodneeds">BACK</Link>) : (<Link className="back-link"  href="/grids/foodavailable">BACK</Link>)}
 
-            <GridButtons className="back-link" />
+            {/* <GridButtons className="back-link" /> */}
             <div className="spacer-20"></div>
             {state}
             <div className="item-detail-card">

@@ -2,6 +2,7 @@ import { useState } from "react";
 import GridButtons from "./GridButtons";
 import SuccessAlert from "./SuccessAlert";
 import axios from "axios";
+import Link from "next/link";
 
 const BASE_URL = "http://localhost:5000";
 const FormTemplate = () => {
@@ -256,8 +257,10 @@ const FormTemplate = () => {
               </button>
               </div>
             
-            {/* FIX STYLING HERE */}
-              <GridButtons />
+           
+            <Link className="back-link mb-4" href="/grids/foodneeds">BACK TO NEEDS</Link> 
+            <Link className="back-link"  href="/grids/foodavailable">BACK TO SHARE</Link>
+             
               
           </form>
          
