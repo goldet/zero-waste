@@ -39,16 +39,12 @@ const checkFileType = function (file, cb) {
 
 router.post("/:id/single", upload.single("image"), async (req, res) => {
   const data = req.body;
-  const imagePath = req.file.filename;
+  const imagePath = req.file ? req.file.filename : null; // check if req.file exists
 
-  const id = Number(req.params.id);
- 
-
-  await db(`UPDATE products SET image_path = '${imagePath}' WHERE id = ${id};`);
-
-
-  console.log(id)
-  console.log(req.file)
+  if (imagePath) { // only update if imagePath exists
+    const id = Number(req.params.id);
+    await db(`UPDATE products SET image_path = '${imagePath}' WHERE id = ${id};`);
+  }
 
   // Store the data and imagePath in your database
   res.send({
