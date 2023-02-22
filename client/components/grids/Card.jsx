@@ -13,13 +13,25 @@ const Card = ({ product, deleteProduct }) => {
               alt={`photo of ${product.name}`}
             />
              
-            ) : (
+            ) : product.image_path === null && product.type === "vegetables" ? (
               <img
               className="w-full h-auto"
-              src={`https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=775&q=80`}
+              src={`https://images.unsplash.com/photo-1552245504-5b1e10c5c04a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80`}
+            /> ) : product.image_path === null && product.type === "fruits" ? (
+              <img
+              className="w-full h-auto"
+              src={`https://images.unsplash.com/photo-1481349518771-20055b2a7b24?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1239&q=80`}
+            /> ) :  product.image_path === null && product.type === "meat" ? (
+              <img
+              className="w-full h-auto"
+              src={`https://images.unsplash.com/photo-1552962402-6bafde66a37c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80`}
+            /> ) : ( 
+              <img
+              className="w-full h-auto"
+              src={`https://images.unsplash.com/photo-1518291344630-4857135fb581?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80`}
             />
-            )}{" "}
-          </figure>{" "}
+            )}
+          </figure>
         </Link>
         <div className="card-actions justify-end">
           <button
