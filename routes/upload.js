@@ -54,15 +54,6 @@ router.post("/:id/single", upload.single("image"), async (req, res) => {
     imagePath: imagePath,
   });
 
-  /* if (req.file) {
-    res.send("Single file uploaded successfully");
-  } else {
-    res.status(400).send("Please upload a valid image");
-  } */
 });
 
 module.exports = router;
-//create product try to return product created in backend
-//upload image
-//when you do post request you need to provide id of products
-//after uploading image with id you update the database with the url of the image with the server

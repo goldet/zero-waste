@@ -1,6 +1,7 @@
 const SuccessAlert = () => {
   return (
-    <div className="bg-zinc-50">
+    
+    <div className="bg-zinc-50 pb-96"> 
       <div className="alert alert-success shadow-lg w-80 block ml-auto mr-auto mt-10">
         <div>
           <svg
@@ -20,6 +21,7 @@ const SuccessAlert = () => {
         </div>
       </div>
     </div>
+    
   );
 };
 

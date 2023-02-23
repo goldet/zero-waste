@@ -49,6 +49,7 @@ const FormTemplate = () => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("image", image);
+
     const productResponse = await createProduct(product);
 
     try {
@@ -63,10 +64,11 @@ const FormTemplate = () => {
     }
   };
 
+  //saves file to state
   const handleImage = (e) => {
     setImage(e.target.files[0]);
   };
-
+  
   const createProduct = async (product) => {
     try {
       let productResponse = await fetch(`${BASE_URL}/products`, {
