@@ -11,6 +11,7 @@ const FormTemplate = () => {
     type: "",
     description: "",
     amount: 0,
+    amount_type: "",
     phone_number: "",
     zip_code: "",
     needed: false,
@@ -18,7 +19,6 @@ const FormTemplate = () => {
   });
 
   const [image, setImage] = useState(null);
-
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
@@ -108,6 +108,7 @@ const FormTemplate = () => {
               <label>
                 Your name:
                 <input
+                  required
                   className="rounded-md ml-1"
                   type="text"
                   name="firstname"
@@ -119,6 +120,7 @@ const FormTemplate = () => {
               <label>
                 Product:
                 <input
+                  required
                   type="text"
                   name="name"
                   value={product.name}
@@ -129,6 +131,7 @@ const FormTemplate = () => {
               <div className="radio-container">
                 <label>
                   <input
+                    required
                     type="radio"
                     name="type"
                     value={"fruits"}
@@ -140,6 +143,7 @@ const FormTemplate = () => {
 
                 <label>
                   <input
+                    required
                     type="radio"
                     name="type"
                     value={"vegetables"}
@@ -151,6 +155,7 @@ const FormTemplate = () => {
 
                 <label>
                   <input
+                    required
                     type="radio"
                     name="type"
                     value={"meat"}
@@ -162,6 +167,7 @@ const FormTemplate = () => {
 
                 <label>
                   <input
+                    required
                     type="radio"
                     name="type"
                     value={"other"}
@@ -194,20 +200,35 @@ const FormTemplate = () => {
                 ></input>
               </label>
 
-              <label>
-                Amount:
-                <input
-                  className="rounded-md ml-1"
-                  type="number"
-                  name="amount"
-                  value={product.amount}
-                  onChange={(e) => handleChange(e)}
-                ></input>
-              </label>
+              <div className="flex md:justify-between lg:justify-start items-center">
+                <label>
+                  Amount:
+                  <input
+                    required
+                    className=""
+                    type="number"
+                    name="amount"
+                    value={product.amount}
+                    onChange={(e) => handleChange(e)}
+                  ></input>
+                </label>
+
+                <select className="h-10">
+                  <option disabled selected>
+                    Amount Type
+                  </option>
+                  <option>litres</option>
+                  <option>millilitres</option>
+                  <option>grams</option>
+                  <option>kilograms</option>
+                  <option>none</option>
+                </select>
+              </div>
 
               <label>
                 Phone number:
                 <input
+                  required
                   type="text"
                   name="phone_number"
                   value={product.phone_number}
@@ -218,6 +239,7 @@ const FormTemplate = () => {
               <label>
                 Zip Code:
                 <input
+                  required
                   type="text"
                   name="zip_code"
                   value={product.zip_code}
@@ -231,6 +253,7 @@ const FormTemplate = () => {
               <div className="radio-container">
                 <label>
                   <input
+                    required
                     type="radio"
                     name="needed"
                     value={"true"}
@@ -242,6 +265,7 @@ const FormTemplate = () => {
 
                 <label>
                   <input
+                    required
                     type="radio"
                     name="needed"
                     value={"false"}
