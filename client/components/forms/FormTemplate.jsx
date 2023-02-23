@@ -33,6 +33,11 @@ const FormTemplate = () => {
     setProduct((product) => ({ ...product, type: foodType }));
   };
 
+  const handleAmountType = (e) => {
+    const amountType = e.target.value;
+    setProduct((product) => ({ ...product, amount_type: amountType }));
+  };
+
   const handleChange = (event) => {
     const inputEl = event.target;
     const name = inputEl.name;
@@ -213,15 +218,15 @@ const FormTemplate = () => {
                   ></input>
                 </label>
 
-                <select className="h-10">
+                <select className="h-10" onChange={(e) => handleAmountType(e)}>
                   <option disabled selected>
                     Amount Type
                   </option>
-                  <option>litres</option>
-                  <option>millilitres</option>
-                  <option>grams</option>
-                  <option>kilograms</option>
-                  <option>none</option>
+                  <option value={"litres"}>litre(s)</option>
+                  <option value={"millilitres"}>millilitre(s)</option>
+                  <option value={"grams"}>gram(s)</option>
+                  <option value={"kilograms"}>kilogram(s)</option>
+                  <option value={"none"} >none</option>
                 </select>
               </div>
 

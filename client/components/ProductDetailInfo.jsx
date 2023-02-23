@@ -86,11 +86,13 @@ const ProductDetailInfo = () => {
                         <p>{product.zip_code}</p>
                       </div>
                     </div>
+                    <p className="item-detail-heading">AMOUNT</p>
+                    <p>{product.amount} {product.amount_type === "none" ? (null) : (product.amount_type)}</p>
                     <p className="item-detail-heading">PRODUCT DESCRIPTION</p>
                     <p>{product.description}</p>
                     <p className="item-detail-heading">CONTACT INFO</p>
-                    <p>{product.firstname}</p>
-                    <p>{product.phone_number}</p>
+                    <p>{product.firstname} {product.phone_number}</p>
+                    
                   </div>
                   <div className="horizontal-line">
                     <p className="item-detail-id">Product-ID: {product.id}</p>

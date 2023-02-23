@@ -103,13 +103,14 @@ router.post("/", async (req, res) => {
   const type = req.body.type;
   const description = req.body.description;
   const amount = req.body.amount;
+  const amount_type = req.body.amount_type;
   const phone_number = req.body.phone_number;
   const zip_code = req.body.zip_code;
   const needed = req.body.needed;
 
   try {
     const response = await db(
-      `INSERT INTO products (firstname, name, type, description, amount, phone_number, zip_code, needed) values ('${firstname}', '${name}', '${type}', '${description}', ${amount}, '${phone_number}', '${zip_code}', ${needed}); SELECT LAST_INSERT_ID()`
+      `INSERT INTO products (firstname, name, type, description, amount, amount_type, phone_number, zip_code, needed) values ('${firstname}', '${name}', '${type}', '${description}', ${amount},'${amount_type}',  '${phone_number}', '${zip_code}', ${needed}); SELECT LAST_INSERT_ID()`
     );
 
     const products = await getProducts();
@@ -151,6 +152,7 @@ router.patch("/:id", async (req, res) => {
   const type = req.body.type;
   const description = req.body.description;
   const amount = req.body.amount;
+  const amount_type = req.body.amount_type;
   const phone_number = req.body.phone_number;
   const zip_code = req.body.zip_code;
   const needed = req.body.needed;
@@ -167,7 +169,7 @@ router.patch("/:id", async (req, res) => {
 
     await db(
       `UPDATE products SET firstname = '${newProduct.firstname}', name = '${newProduct.name}', type = '${newProduct.type}', 
-      description = '${newProduct.description}', amount = ${newProduct.amount}, phone_number = '${newProduct.phone_number}',
+      description = '${newProduct.description}', amount = ${newProduct.amount}, amount_type = ${newProduct.amount_type}, phone_number = '${newProduct.phone_number}',
        zip_code = '${newProduct.zip_code}', needed = ${newProduct.needed} WHERE id = ${newProduct.id}` /*    phone_number = '${phone_number}' zip_code = '${zip_code}', needed = ${needed} */
     );
 
