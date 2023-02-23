@@ -138,18 +138,19 @@ body {
  padding-bottom: 16px;
 }
 
-.searchbar-input {
+.searchbar-input input, text {
   
 padding-left: 20px;
 
 
 }
 
-::placeholder{
 
-  padding: 16px;
-  
-  }
+  .product-description ::placeholder {
+
+    padding: 0px;
+    
+    }
 
 
   /* for product detail */
@@ -166,6 +167,12 @@ padding-left: 20px;
   .container1 {
     width: 100%;
     margin: auto;
+  }
+
+  .container2 {
+    width: 100%;
+    margin: auto;
+    padding-bottom: 20px;
   }
 
 
@@ -275,7 +282,7 @@ height: 24rem;
   /* For desktop: */
 
 .navbar {
-padding: 0 4rem;
+padding: 0 7rem;
 }
 
 .image {
@@ -289,14 +296,15 @@ padding: 0 4rem;
   aspect-ratio: 1;
 }
 
-::placeholder{
 
-  padding: 16px;
-  
-  }
+.product-description {
+
+    padding-left: 0px;
+    
+    }
 
 .form-control {
-  margin: 20px 60px 150px 60px;
+  margin: 20px 66px 150px 66px;
 }
 
 .page-container {
@@ -313,5 +321,22 @@ padding: 0 4rem;
   gap: 16px;
   margin: 0px;
 }
+
+
+
+.form-control-search input, select {
+  width: 24rem;
+  height: 40px;
+  margin: 25px 0px 25px 0px;
+  padding: 3px 7px;
+  font-size: 14px;
+  font-family: inherit;
+  border: 1px solid rgb(66,155,147);
+  border-radius: 5px;
+  padding-left: 25px;
+  
+}
+
+
 
 }

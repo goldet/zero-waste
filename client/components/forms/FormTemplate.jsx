@@ -1,5 +1,4 @@
 import { useState } from "react";
-import GridButtons from "./GridButtons";
 import SuccessAlert from "./SuccessAlert";
 import axios from "axios";
 import Link from "next/link";
@@ -178,15 +177,15 @@ const FormTemplate = () => {
               </label>
 
               {/* fix this later */}
-             {/*   <div className="col">
+              {/*   <div className="col">
                 {image && <img src={image} style={{ width: "100px" }} />}
               </div>
  */}
 
-
               <label>
                 Description:
                 <input
+                  className="relative"
                   type="text"
                   name="description"
                   value={product.description}
@@ -226,7 +225,9 @@ const FormTemplate = () => {
                 ></input>
               </label>
 
-              <p className="pb-8">Is this something you need or is it to share?</p>
+              <p className="pb-8">
+                Is this something you need or is it to share?
+              </p>
               <div className="radio-container">
                 <label>
                   <input
@@ -252,18 +253,21 @@ const FormTemplate = () => {
               </div>
             </div>
             <div className="mb-8">
-              <button type="submit" className="button btn tracking-wider text-lg">
+              <button
+                type="submit"
+                className="button btn tracking-wider text-lg"
+              >
                 Submit
               </button>
-              </div>
-            
-           
-            <Link className="back-link mb-4" href="/grids/foodneeds">BACK TO NEEDS</Link> 
-            <Link className="back-link"  href="/grids/foodavailable">BACK TO SHARE</Link>
-             
-              
+            </div>
+
+            <Link className="back-link mb-4" href="/grids/foodneeds">
+              BACK TO NEEDS
+            </Link>
+            <Link className="back-link" href="/grids/foodavailable">
+              BACK TO SHARE
+            </Link>
           </form>
-         
         </div>
       )}
     </div>

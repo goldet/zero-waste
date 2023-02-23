@@ -5,7 +5,7 @@ export default function Homepage() {
   return (
     <>
    <div className="hero min-h-screen bg-base-200">
-  <div className="heroContainer gap-12 hero-content flex-col lg:flex-row-reverse">
+  <div className="heroContainer gap-20 hero-content flex-col lg:flex-row-reverse">
     <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" className="image md:max-w-xs rounded-lg shadow-2xl" />
     <div>
       <h1 className="text-center md:text-start lg:text-start text-5xl font-bold"> Why Zero Waste? </h1>

@@ -113,8 +113,19 @@ const FoodNeeds = () => {
               </btn>
             </div>
           )}
+          </div> 
           {filtProducts && filtProducts.length > 0 && (
             <>
+            <div>
+            <btn
+                  onClick={(event) => handleOnClick(event)}
+                  href="/grids/foodneeds"
+                  className="back-link pl-2"
+                >
+                  BACK
+                </btn>
+                </div>
+                <div className="parentContainer gap-10">
               {filtProducts.map((product) => (
                 <Card
                   product={product}
@@ -122,19 +133,12 @@ const FoodNeeds = () => {
                   key={product.id}
                 />
               ))}
-              <div className="">
-                <btn
-                  onClick={(event) => handleOnClick(event)}
-                  href="/grids/foodneeds"
-                  className="btn w-32 "
-                >
-                  Go Back
-                </btn>
               </div>
+              
             </>
           )}
         </div>
-      </div>
+      
     </>
   );
 };

@@ -9,6 +9,7 @@ const FoodAvailable = () => {
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
 
+
   const [filtProducts, setFiltProducts] = useState("");
 
   //add function to add the zip code to this component
@@ -107,26 +108,34 @@ const FoodAvailable = () => {
                 href="/grids/foodavailable"
                 className="btn"
               >
-                Go Back
+                BACK
               </btn>
             </div>
           )}
+         </div> 
+        
           {filtProducts && filtProducts.length > 0 && (
             <>
-              {filtProducts.map((product) => (
-                <Card product={product} deleteProduct={deleteProduct} />
-              ))}
-              <btn
+             <div className="">
+             <btn
                 onClick={(e) => handleOnClick2(e)}
                 href="/grids/foodavailable"
-                className="btn w-32 "
+                className="back-link pl-2" 
               >
-                Go Back
+                BACK
               </btn>
+              </div>
+              <div className="parentContainer gap-10">
+              {filtProducts.map((product) => (
+                <Card product={product} deleteProduct={deleteProduct}/>
+              ))}
+              </div>
+            
             </>
           )}
+          
         </div>
-      </div>
+
     </>
   );
 };
