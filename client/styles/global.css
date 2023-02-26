@@ -56,6 +56,7 @@ body {
 .navbar {
   background-color:rgb(66,155,147);
   position: sticky;
+ 
 }
 
 .button {
@@ -283,14 +284,18 @@ height: 24rem;
   margin: auto;
 }
 
+.success-alert-continer {
+  padding-bottom: 500px;
+}
 .footer {
   background-color: rgb(66,155,147);
   color: white;
   padding: 15px;
   bottom: 0;
-  width: 100%;
-  /* position: sticky; */
+  position: sticky;  /* change */
 }
+
+
 
 
 @media only screen and (min-width: 768px) {

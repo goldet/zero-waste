@@ -1,7 +1,8 @@
 import MobileMenu from "./MobileMenu";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-
+import zwl from "../../public/zwl.jpg"
+import Image from "next/image";
 
 const Navbar = () => {
 const [mainMenu, setMainMenu] = useState(false)
@@ -38,13 +39,19 @@ const handleMenuClick = () => {
    
     <div ref={ref} className="navbar text-primary-content flex justify-between shadow-xl"> {/* navbarContainer relative flex justify-between */}
     <Link href="/">
-          <img className="logo h-16" src="zwl.jpg" alt="Zero Waste Logo" />
-        </Link>
+          <Image 
+          className="logo h-14" 
+           src={zwl}
+           alt="Zero Waste Logo"
+           width="150"
+           height="auto"/>
+{/*           
+ */}        </Link>
      
      
       <div className="grid">
       <button className="btn btn-ghost normal-case text-xl" onClick={handleMenuClick}>Menu</button>
-      {mainMenu && <div className=""><MobileMenu /></div>}
+      {mainMenu && <div><MobileMenu setMainMenu={setMainMenu}/></div>}
       </div>
       </div>
      

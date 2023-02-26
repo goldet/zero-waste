@@ -221,14 +221,14 @@ const FormTemplate = () => {
                 </label>
 
                 <select className="h-10" onChange={(e) => handleAmountType(e)}>
-                  <option disabled selected>
+                  <option defaultValue>
                     Amount Type
                   </option>
                   <option value={"litres"}>litre(s)</option>
                   <option value={"millilitres"}>millilitre(s)</option>
                   <option value={"grams"}>gram(s)</option>
                   <option value={"kilograms"}>kilogram(s)</option>
-                  <option value={"none"} >none</option>
+                  <option value={"none"}>none</option>
                 </select>
               </div>
 

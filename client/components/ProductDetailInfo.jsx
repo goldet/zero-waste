@@ -87,7 +87,7 @@ const ProductDetailInfo = () => {
                       </div>
                     </div>
                     <p className="item-detail-heading">AMOUNT</p>
-                    <p>{product.amount} {product.amount_type === "none" ? (null) : (product.amount_type)}</p>
+                    <p>{product.amount} {product.amount_type === "none" || product.amount_type === "Amount Type" ? (null) : (product.amount_type)}</p>
                     <p className="item-detail-heading">PRODUCT DESCRIPTION</p>
                     <p>{product.description}</p>
                     <p className="item-detail-heading">CONTACT INFO</p>

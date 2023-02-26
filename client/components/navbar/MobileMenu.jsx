@@ -1,12 +1,12 @@
 import MobileSections from "./MobileSections";
 
-const MobileMenu= () => {
+const MobileMenu= ({ setMainMenu }) => {
     return (
     
   <>
   
-  <section className="">
-  <MobileSections />
+  <section>
+  <MobileSections setMainMenu={setMainMenu}/>
   </section>
 
   </>
