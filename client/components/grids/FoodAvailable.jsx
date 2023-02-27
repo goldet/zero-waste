@@ -3,8 +3,6 @@ import Card from "./Card";
 import SearchBarNew from "./SearchBarNew";
 import services from "../services";
 
-const BASE_URL = "http://localhost:5000";
-
 const FoodAvailable = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState(null);

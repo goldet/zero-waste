@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react";
 import SearchBarNew from "./SearchBarNew";
 import services from "../services";
 
-const BASE_URL = "http://localhost:5000";
-
 //component that renders food that is needed
 const FoodNeeds = () => {
   const [products, setProducts] = useState(null);

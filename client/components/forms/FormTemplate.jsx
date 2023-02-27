@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SuccessAlert from "./SuccessAlert";
 import axios from "axios";
 import Link from "next/link";
+import services from "../services";
+import { useRouter } from 'next/router';
+
 
 const BASE_URL = "http://localhost:5000";
 const FormTemplate = () => {
@@ -18,6 +21,7 @@ const FormTemplate = () => {
     image_path: null,
   });
 
+  const router = useRouter();
   const [image, setImage] = useState(null);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -71,6 +75,7 @@ const FormTemplate = () => {
   };
 
   const createProduct = async (product) => {
+
     try {
       let productResponse = await fetch(`${BASE_URL}/products`, {
         method: "POST",
@@ -80,14 +85,24 @@ const FormTemplate = () => {
         body: JSON.stringify(product),
       });
       productResponse = await productResponse.json();
+      console.log(product.needed)
+      /* const newProduct = await services.productService.create(product);
+      return newProduct && setSuccess(true); */
 
       setSuccess(true);
 
       function sleep(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));
       }
+      
       await sleep(3000);
-      setSuccess(false);
+
+      if (product.needed === "false") {
+        router.push('/grids/foodavailable');
+      } else {
+        router.push('/grids/foodneeds');
+      }
+      
 
       return productResponse;
     } catch (error) {
@@ -105,6 +120,13 @@ const FormTemplate = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if (router.asPath !== router.route) {
+      // This means the route has changed, so we can reset the success state
+      setSuccess(false);
+    }
+  }, [router.asPath, router.route]);
 
   return (
     <div>
