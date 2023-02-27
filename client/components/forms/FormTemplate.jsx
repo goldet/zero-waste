@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import SuccessAlert from "./SuccessAlert";
 import Link from "next/link";
 import services from "../services";
-import { useRouter } from 'next/router';
-
+import { useRouter } from "next/router";
 
 const BASE_URL = "http://localhost:5000";
 const FormTemplate = () => {
@@ -57,27 +56,25 @@ const FormTemplate = () => {
     const productResponse = await createProduct(product);
 
     try {
-
       const newImage = await services.productService.createImage(
         productResponse,
         formData
       );
-     setSuccess(true);
+      setSuccess(true);
 
       function sleep(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));
       }
-      
+
       await sleep(3000);
 
       if (product.needed === "false") {
-        router.push('/grids/foodavailable');
+        router.push("/grids/foodavailable");
       } else {
-        router.push('/grids/foodneeds');
+        router.push("/grids/foodneeds");
       }
-      return newImage
+      return newImage;
     } catch (error) {
-    
     } finally {
     }
   };
@@ -91,17 +88,8 @@ const FormTemplate = () => {
     setLoading(true);
 
     try {
-      let productResponse = await fetch(`${BASE_URL}/products`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(product),
-      });
-      productResponse = await productResponse.json();
-      
-
-      return productResponse;
+      const newProduct = await services.productService.create(product);
+      return newProduct;
     } catch (error) {
       setError("Something went wrong! Please try again later.");
     } finally {
