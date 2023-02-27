@@ -31,10 +31,8 @@ const FoodNeeds = () => {
   useEffect(() => {
     const getProducts = async () => {
       setIsLoading(true);
-      const response = await fetch(`${BASE_URL}/products?needed=true`);
-      const data = await response.json();
+      const data = await services.productService.fetchAllTrue();
       const products = data.products.data;
-
       setProducts(products);
       setIsLoading(false);
     };
@@ -51,13 +49,6 @@ const FoodNeeds = () => {
   const deleteProduct = async (id) => {
     try {
       await services.productService.delete(id); 
-      /* await fetch(`${BASE_URL}/products/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(products),
-      }); */
       const notDeleted = products.filter((product) => product.id != id);
       setProducts(notDeleted);
     } catch (error) {

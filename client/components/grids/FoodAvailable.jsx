@@ -28,11 +28,11 @@ const FoodAvailable = () => {
     setFiltProducts(filterProds);
   };
 
+  //get products that are to share
   useEffect(() => {
     const getProducts = async () => {
       setIsLoading(true);
-      const response = await fetch(`${BASE_URL}/products?needed=false`);
-      const data = await response.json();
+      const data = await services.productService.fetchAllFalse();
       const products = data.products.data;
       setProducts(products);
       setIsLoading(false);
@@ -49,13 +49,6 @@ const FoodAvailable = () => {
   const deleteProduct = async (id) => {
     try {
       await services.productService.delete(id); 
-      /* await fetch(`${BASE_URL}/products/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(products),
-      }); */
       const notDeleted = products.filter((product) => product.id != id);
       setProducts(notDeleted);
     } catch (error) {
