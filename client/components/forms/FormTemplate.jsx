@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import SuccessAlert from "./SuccessAlert";
-import axios from "axios";
 import Link from "next/link";
 import services from "../services";
 import { useRouter } from 'next/router';
@@ -25,6 +24,7 @@ const FormTemplate = () => {
   const [image, setImage] = useState(null);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   //need vs share radio option in form
   const handleTruefalse = (ev) => {
@@ -57,39 +57,12 @@ const FormTemplate = () => {
     const productResponse = await createProduct(product);
 
     try {
-      await axios({
-        method: "post",
-        url: `${BASE_URL}/images/${productResponse.insertId}/single`,
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-    } catch (error) {
-      console.log(error);
-    } finally {
-    }
-  };
 
-  //saves file to state
-  const handleImage = (e) => {
-    setImage(e.target.files[0]);
-  };
-
-  const createProduct = async (product) => {
-
-    try {
-      let productResponse = await fetch(`${BASE_URL}/products`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(product),
-      });
-      productResponse = await productResponse.json();
-      console.log(product.needed)
-      /* const newProduct = await services.productService.create(product);
-      return newProduct && setSuccess(true); */
-
-      setSuccess(true);
+      const newImage = await services.productService.createImage(
+        productResponse,
+        formData
+      );
+     setSuccess(true);
 
       function sleep(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));
@@ -102,12 +75,37 @@ const FormTemplate = () => {
       } else {
         router.push('/grids/foodneeds');
       }
+      return newImage
+    } catch (error) {
+    
+    } finally {
+    }
+  };
+
+  //saves file to state
+  const handleImage = (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  const createProduct = async (product) => {
+    setLoading(true);
+
+    try {
+      let productResponse = await fetch(`${BASE_URL}/products`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      });
+      productResponse = await productResponse.json();
       
 
       return productResponse;
     } catch (error) {
       setError("Something went wrong! Please try again later.");
     } finally {
+      setLoading(false);
       setProduct({
         firstname: "",
         name: "",
@@ -130,6 +128,7 @@ const FormTemplate = () => {
 
   return (
     <div>
+      {loading && <button className="btn loading">loading</button>}
       {error && (
         <div className="alert alert-error shadow-lg">
           <div>

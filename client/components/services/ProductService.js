@@ -34,7 +34,7 @@ export default class ProductService {
   //fetch request for image
   async createImage( productResponse, formData) {
     const imageResponse = await fetch(
-      `${BASE_URL}/products/${itemResponse.insertId}/single`,
+      `${BASE_URL}/images/${productResponse.insertId}/single`,
       {
         method: "POST",
         body: formData,
