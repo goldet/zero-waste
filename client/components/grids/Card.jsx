@@ -1,35 +1,54 @@
 import Link from "next/link";
+import fruitimg from "../../public/fruitimg.jpg";
+import vegetableimg from "../../public/vegetableimg.jpg";
+import meatimg from "../../public/meatimg.jpg";
+import otherimg from "../../public/otherimg.jpg";
+import Image from "next/image";
 
 const Card = ({ product, deleteProduct }) => {
   return (
     <div key={product.id}>
       <div className="card card-compact w-80 bg-base-100 shadow-xl">
-        <Link href={`/productdetail/${product.id}`}> 
+        <Link href={`/productdetail/${product.id}`}>
           <figure className="overflow-hidden w-full h-48">
             {product.image_path !== null ? (
               <img
-              className="w-full h-auto"
-              src={`http://localhost:5000/images/${product.image_path}`}
-              alt={`photo of ${product.name}`}
-            />
-             
+                className="w-full h-auto"
+                src={`http://localhost:5000/images/${product.image_path}`}
+                alt={`photo of ${product.name}`}
+              />
             ) : product.image_path === null && product.type === "vegetables" ? (
-              <img
-              className="w-full h-auto"
-              src={`https://images.unsplash.com/photo-1552245504-5b1e10c5c04a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80`}
-            /> ) : product.image_path === null && product.type === "fruits" ? (
-              <img
-              className="w-full h-auto"
-              src={`https://images.unsplash.com/photo-1481349518771-20055b2a7b24?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1239&q=80`}
-            /> ) :  product.image_path === null && product.type === "meat" ? (
-              <img
-              className="w-full h-auto"
-              src={`https://images.unsplash.com/photo-1552962402-6bafde66a37c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80`}
-            /> ) : ( 
-              <img
-              className="w-full h-auto"
-              src={`https://images.unsplash.com/photo-1518291344630-4857135fb581?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80`}
-            />
+              <Image
+                className="w-full h-auto"
+                src={vegetableimg}
+                alt="image of mushrooms"
+                width="100%"
+                height="auto"
+              />
+            ) : product.image_path === null && product.type === "fruits" ? (
+              <Image
+                className="w-full h-auto"
+                src={fruitimg}
+                alt="image of banana"
+                width="100%"
+                height="auto"
+              />
+            ) : product.image_path === null && product.type === "meat" ? (
+              <Image
+                className="w-full h-auto"
+                src={meatimg}
+                alt="image of chicken on a fork"
+                width="100%"
+                height="auto"
+              />
+            ) : (
+              <Image
+                className="w-full h-auto"
+                src={otherimg}
+                alt="image of pasta, cheese, tomatoes, salt, pepper, garlic, basil, a pot, and a pan"
+                width="100%"
+                height="auto"
+              />
             )}
           </figure>
         </Link>

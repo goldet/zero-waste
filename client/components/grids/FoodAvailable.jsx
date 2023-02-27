@@ -5,10 +5,9 @@ import SearchBarNew from "./SearchBarNew";
 const BASE_URL = "http://localhost:5000";
 
 const FoodAvailable = () => {
-  /*   const [isLoading, setIsLoading] = (false); */
+  const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState(null);
   const [error, setError] = useState(null);
-
 
   const [filtProducts, setFiltProducts] = useState("");
 
@@ -30,12 +29,12 @@ const FoodAvailable = () => {
 
   useEffect(() => {
     const getProducts = async () => {
-      /*  setIsLoading(true) */
+      setIsLoading(true);
       const response = await fetch(`${BASE_URL}/products?needed=false`);
       const data = await response.json();
       const products = data.products.data;
       setProducts(products);
-      /*  setIsLoading(false) */
+      setIsLoading(false);
     };
     getProducts();
   }, []);
@@ -57,8 +56,6 @@ const FoodAvailable = () => {
       });
       const notDeleted = products.filter((product) => product.id != id);
       setProducts(notDeleted);
-
-      /* window.location.reload(); */
     } catch (error) {
       setError("Oops! Something went wrong. Try again later");
     }
@@ -72,6 +69,28 @@ const FoodAvailable = () => {
         </h1>
 
         <SearchBarNew addZipCode={addZipCode} addProductName={addProductName} />
+
+        {isLoading && <button className="btn loading">loading</button>}
+        {error && (
+          <div className="alert alert-error shadow-lg">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="stroke-current flex-shrink-0 h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span>{error}</span>
+            </div>
+          </div>
+        )}
 
         <div className="parentContainer gap-10">
           {products &&
@@ -112,30 +131,27 @@ const FoodAvailable = () => {
               </btn>
             </div>
           )}
-         </div> 
-        
-          {filtProducts && filtProducts.length > 0 && (
-            <>
-             <div className="">
-             <btn
+        </div>
+
+        {filtProducts && filtProducts.length > 0 && (
+          <>
+            <div className="">
+              <btn
                 onClick={(e) => handleOnClick2(e)}
                 href="/grids/foodavailable"
-                className="back-link pl-2" 
+                className="back-link pl-2"
               >
                 BACK
               </btn>
-              </div>
-              <div className="parentContainer gap-10">
+            </div>
+            <div className="parentContainer gap-10">
               {filtProducts.map((product) => (
-                <Card product={product} deleteProduct={deleteProduct}/>
+                <Card product={product} deleteProduct={deleteProduct} />
               ))}
-              </div>
-            
-            </>
-          )}
-          
-        </div>
-
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 };
