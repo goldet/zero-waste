@@ -1,6 +1,7 @@
 import Card from "./Card";
 import React, { useState, useEffect } from "react";
 import SearchBarNew from "./SearchBarNew";
+import services from "../services";
 
 const BASE_URL = "http://localhost:5000";
 
@@ -49,13 +50,14 @@ const FoodNeeds = () => {
   //delete's product
   const deleteProduct = async (id) => {
     try {
-      await fetch(`${BASE_URL}/products/${id}`, {
+      await services.productService.delete(id); 
+      /* await fetch(`${BASE_URL}/products/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(products),
-      });
+      }); */
       const notDeleted = products.filter((product) => product.id != id);
       setProducts(notDeleted);
     } catch (error) {

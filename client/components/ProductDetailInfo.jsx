@@ -59,7 +59,7 @@ const ProductDetailInfo = () => {
               <div className="item-detail-grid">
                 {product.image_path !== null ? (
                   <img
-                    className="w-full h-auto"
+                    className="item-detail-img"
                     src={`http://localhost:5000/images/${product.image_path}`}
                     alt={`photo of ${product.name}`}
                   />

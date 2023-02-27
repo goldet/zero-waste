@@ -13,7 +13,7 @@ export default class ProductService {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(item),
+      body: JSON.stringify(product),
     });
     return itemResponse.json();
   }
@@ -28,5 +28,15 @@ export default class ProductService {
       }
     );
     return imageResponse.json();
+  }
+
+  delete(id) {
+    return fetch(`http://localhost:5000/products/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    
+    });
   }
 }
