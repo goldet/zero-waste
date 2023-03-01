@@ -5,9 +5,8 @@ import services from "../services";
 
 const FoodAvailable = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState("");
   const [error, setError] = useState(null);
-
   const [filtProducts, setFiltProducts] = useState("");
 
   //add function to add the zip code to this component
@@ -46,7 +45,7 @@ const FoodAvailable = () => {
 
   const deleteProduct = async (id) => {
     try {
-      await services.productService.delete(id); 
+      await services.productService.delete(id);
       const notDeleted = products.filter((product) => product.id != id);
       setProducts(notDeleted);
     } catch (error) {
@@ -95,6 +94,7 @@ const FoodAvailable = () => {
                 deleteProduct={deleteProduct}
               />
             ))}
+
           {filtProducts && filtProducts.length === 0 && (
             <div className="ml-8 alert alert-error shadow-lg">
               <div>
@@ -143,6 +143,29 @@ const FoodAvailable = () => {
               ))}
             </div>
           </>
+        )}
+
+        {products.length === 0 && !isLoading && (
+          <div className="alert alert-info shadow-lg">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="stroke-current flex-shrink-0 w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <span>
+                Looks like there's no food available right now. Try again later!
+              </span>
+            </div>
+          </div>
         )}
       </div>
     </>

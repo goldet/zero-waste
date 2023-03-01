@@ -234,7 +234,7 @@ const FormTemplate = () => {
                   type="text"
                   name="description"
                   value={product.description}
-                  placeholder="quality and expiration date"
+                  placeholder="description may include quality and expiration date"
                   onChange={(e) => handleChange(e)}
                 ></input>
               </label>

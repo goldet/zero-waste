@@ -42,7 +42,7 @@ router.post("/:id/single", upload.single("image"), async (req, res) => {
   const imagePath = req.file ? req.file.filename : null; // check if req.file exists
 
   if (imagePath) { // only update if imagePath exists
-    const id = Number(req.params.id);
+    const id = parseInt(req.params.id);
     await db(`UPDATE products SET image_path = '${imagePath}' WHERE id = ${id};`);
   }
 

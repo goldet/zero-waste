@@ -1,7 +1,6 @@
 import FormTemplate from "./FormTemplate";
 
 const FoodGrid= () => {
-  //fetch request in front end to reflect true or false 
     
   return (
     
